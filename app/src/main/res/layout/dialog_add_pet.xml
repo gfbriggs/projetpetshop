@@ -19,19 +19,11 @@
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText3"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Pet&apos;s name"
+        android:text="Nom de l'animal"
         android:id="@+id/txtName"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -41,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Pet type"
+        android:text="Type de l'animal"
         android:id="@+id/textView2"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/editText"
@@ -51,20 +43,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Pet&apos;s age"
+        android:text="Date de naissance"
         android:id="@+id/textView3"
-        android:layout_above="@+id/editText3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add pet"
+        android:text="Ajouter l'animal"
         android:id="@+id/btnAddPet"
+        android:layout_marginTop="61dp"
         android:layout_below="@+id/editText3"
-        android:layout_toLeftOf="@+id/txtName"
-        android:layout_toStartOf="@+id/txtName"
-        android:layout_marginTop="97dp" />
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2" />
 
     <Button
         android:layout_width="wrap_content"
@@ -72,7 +64,16 @@
         android:text="Cancel"
         android:id="@+id/btnCancel"
         android:layout_alignTop="@+id/btnAddPet"
-        android:layout_toRightOf="@+id/txtName"
-        android:layout_toEndOf="@+id/txtName" />
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

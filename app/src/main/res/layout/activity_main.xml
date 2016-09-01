@@ -12,31 +12,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\Inventory"
-        android:id="@+id/btnInventory"
-        android:layout_marginBottom="131dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginStart="26dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/txtWelcome"
-        android:layout_alignStart="@+id/txtWelcome" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Animals"
+        android:text="Voir les animaux"
         android:id="@+id/btnAnimals"
-        android:layout_alignTop="@+id/btnInventory"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="47dp"
-        android:layout_marginEnd="47dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="122dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Welcome to your pet shop , Username!"
+        android:text="Bienvenue dans ton Petshop, Utilisateur!"
         android:id="@+id/txtWelcome"
         android:layout_marginTop="98dp"
         android:layout_alignParentTop="true"

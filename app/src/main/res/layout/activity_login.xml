@@ -31,7 +31,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Connecter"
         android:id="@+id/btnLog"
         android:layout_marginBottom="47dp"
         android:layout_alignParentBottom="true"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Email"
+        android:text="Courriel"
         android:id="@+id/txtEmail"
         android:layout_marginBottom="23dp"
         android:layout_above="@+id/inUser"
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Password"
+        android:text="Mot de passe"
         android:id="@+id/txtPassword"
         android:layout_above="@+id/inPass"
         android:layout_centerHorizontal="true" />
@@ -62,7 +62,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Account"
+        android:text="Nouveau compte"
         android:id="@+id/btnNew"
         android:layout_alignBottom="@+id/btnLog"
         android:layout_toRightOf="@+id/txtEmail"

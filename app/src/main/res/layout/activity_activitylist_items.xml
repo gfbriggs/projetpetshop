@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Username&apos;s Pets"
-        android:id="@+id/txtUserPets"
+        android:text="Animaux de Utilisateur"
+        android:id="@+id/txtAnimauxDe"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -22,18 +22,18 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@+id/lstAnimaux"
         android:layout_marginTop="80dp"
-        android:layout_below="@+id/txtUserPets"
+        android:layout_below="@+id/txtAnimauxDe"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Pet"
+        android:text="Ajouter un animal"
         android:id="@+id/btnAddPet"
-        android:layout_below="@+id/txtUserPets"
+        android:layout_below="@+id/txtAnimauxDe"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="22dp" />

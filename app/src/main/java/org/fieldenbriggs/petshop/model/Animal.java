@@ -1,7 +1,9 @@
 package org.fieldenbriggs.petshop.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Geoffrey on 8/31/2016.
@@ -16,6 +18,8 @@ public class Animal {
     private String race;
     private String nom;
     private Date dateNaissance;
+    private String proprietaire;
+    private List<Evenement> lstEvenements;
 
     /*
     Propriétés
@@ -67,10 +71,31 @@ public class Animal {
      */
     public int getAge(){
 
-
         //// TODO: 8/31/2016 Verifier si ça marche...
         return new Date().compareTo(dateNaissance) ;
     }
+
+    /**
+     * Obtient le proprietaire de l'animal.
+     * @return Le nom du propriétaire
+     */
+    public String getProprietaire() {
+        return proprietaire;
+    }
+
+    /**
+     * Definit le proprietaire de l'animal
+     * @param proprietaire Le nom du propriétaire
+     */
+    public void setProprietaire(String proprietaire) {
+        this.proprietaire = proprietaire;
+    }
+
+    public List<Evenement> getLstEvenements() {
+        return lstEvenements;
+    }
+
+
     /*
     Constructeurs
      */
@@ -88,6 +113,8 @@ public class Animal {
         typeAnimal = pType;
         race = pRace;
         dateNaissance = pDateNaissance;
+        proprietaire = "Aucun Proprietaire";
+        lstEvenements = new ArrayList<>();
     }
     /*
     Méthodes
@@ -96,8 +123,7 @@ public class Animal {
     @Override
     public String toString()
     {
-        //// TODO: 8/31/2016 Implementer ceci 
-        return "";
+        return "Un " + typeAnimal + " de la race " + race +" qui a " + getAge() + " an" + (getAge() > 1 ?"s" :"");
     }
 
 }
