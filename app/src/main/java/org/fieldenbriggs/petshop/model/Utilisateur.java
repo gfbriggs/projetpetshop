@@ -21,7 +21,7 @@ public class Utilisateur {
 
     /**
      * Obtient le nom de l'utilisateur
-     * @return
+     * @return le nom d'utilisateur
      */
     public String getNom() {
         return nom;
@@ -29,7 +29,7 @@ public class Utilisateur {
 
     /**
      * Définit le nom de l'utilisateur
-     * @param nom
+     * @param nom le nouveau nom d'utilisateur
      */
     public void setNom(String nom) {
         this.nom = nom;
@@ -37,7 +37,7 @@ public class Utilisateur {
 
     /**
      * Obtient l'adresse de l'utilisateur
-     * @return
+     * @return l'adresse courante
      */
     public String getAdresse() {
         return adresse;
@@ -45,7 +45,7 @@ public class Utilisateur {
 
     /**
      * Definit l'adresse de l'utilisateur
-     * @param adresse
+     * @param adresse la nouvelle adresse
      */
     public void setAdresse(String adresse) {
         this.adresse = adresse;
@@ -53,7 +53,7 @@ public class Utilisateur {
 
     /**
      * Obtient le mot de passe de l'utilisateur
-     * @return
+     * @return le mot de passe de l'utilisateur
      */
     public String getMotDePasse() {
         return motDePasse;
@@ -61,7 +61,7 @@ public class Utilisateur {
 
     /**
      * Definit le mot de passe de l'utilisateur
-     * @param motDePasse
+     * @param motDePasse le nouveau mot de passe de l'utilisateur
      */
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
@@ -69,7 +69,7 @@ public class Utilisateur {
 
     /**
      * Obtient la liste courante des animaux
-     * @return
+     * @return La liste d'animaux à l'utilisateur
      */
     public List<Animal> getLstAnimaux() {
         return lstAnimaux;
@@ -96,7 +96,7 @@ public class Utilisateur {
      */
     /**
      * Méthode override de tostring qui retourne les information de l'utilisateur
-     * @return
+     * @return les infos de l'utilisateur
      */
     @Override
     public String toString()
