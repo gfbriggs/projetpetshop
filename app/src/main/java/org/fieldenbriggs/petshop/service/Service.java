@@ -5,4 +5,13 @@ package org.fieldenbriggs.petshop.service;
  */
 public class Service {
 
+    private static Service instance;
+
+    public static Service getInstance() {
+        if(instance == null) {
+            instance = new Service();
+        }
+        return instance;
+    }
+
 }

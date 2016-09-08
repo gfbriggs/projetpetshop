@@ -114,7 +114,7 @@ public class Animal {
         race = pRace;
         dateNaissance = pDateNaissance;
         proprietaire = "Aucun Proprietaire";
-        lstEvenements = new ArrayList<>();
+        lstEvenements = new ArrayList<>();  
     }
     /*
     Méthodes

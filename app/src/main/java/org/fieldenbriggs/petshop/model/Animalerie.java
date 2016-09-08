@@ -13,6 +13,7 @@ public class Animalerie {
      */
      List<Utilisateur> lstUtilisateurs;
      List<Animal> lstAnimaux;
+     Utilisateur utilisateurCourant;
     /*
     Propriétés
      */

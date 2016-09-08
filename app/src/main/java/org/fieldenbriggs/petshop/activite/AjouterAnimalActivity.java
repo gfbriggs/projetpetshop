@@ -1,4 +1,4 @@
-package org.fieldenbriggs.petshop;
+package org.fieldenbriggs.petshop.activite;
 
 /**
  * Created by Geoffrey on 8/26/2016.
