@@ -1,5 +1,6 @@
 package org.fieldenbriggs.petshop.Interface;
 
+import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Animalerie;
 import org.fieldenbriggs.petshop.model.Utilisateur;
 

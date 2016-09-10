@@ -14,7 +14,6 @@ public class Utilisateur {
     private String nom;
     private String adresse;
     private String motDePasse;
-    private List<Animal> lstAnimaux;
     /**
      * Propriétés
      */
@@ -65,14 +64,6 @@ public class Utilisateur {
      */
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
-    }
-
-    /**
-     * Obtient la liste courante des animaux
-     * @return La liste d'animaux à l'utilisateur
-     */
-    public List<Animal> getLstAnimaux() {
-        return lstAnimaux;
     }
 
     /**
