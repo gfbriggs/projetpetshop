@@ -1,6 +1,7 @@
 package org.fieldenbriggs.petshop.mock;
 
 import org.fieldenbriggs.petshop.model.Animal;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,9 +31,9 @@ public class Data {
     public List<Animal> ListeAnimaux()
     {
         List<Animal> lstAnimaux = new ArrayList<>();
-        lstAnimaux.add(new Animal("Sparky","Chien","Colley",new Date(20150402)));
-        lstAnimaux.add(new Animal("Meow","Chat","Espagnol",new Date(20150406)));
-        lstAnimaux.add(new Animal("sirLancelot","Chat","Bengal",new Date(20130305)));
+        lstAnimaux.add(new Animal("Sparky","Chien","Colley",new LocalDate(20150402)));
+        lstAnimaux.add(new Animal("Meow","Chat","Espagnol",new LocalDate(20150406)));
+        lstAnimaux.add(new Animal("sirLancelot","Chat","Bengal",new LocalDate(20130305)));
         return lstAnimaux;
     }
 }

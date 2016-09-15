@@ -11,18 +11,40 @@ public class Animalerie {
     /*
     Champs
      */
-     List<Utilisateur> lstUtilisateurs;
-     List<Animal> lstAnimaux;
-     Utilisateur utilisateurCourant;
+     Animal animalCourant;
     /*
     Propriétés
      */
+    /**
+     * Definit l'animal courant de l'animalerie.
+     * @param animalCourant
+     */
+    public void setAnimalCourant(Animal animalCourant) {
+        this.animalCourant = animalCourant;
+    }
 
+    /**
+     * Obtient l'animal courant sur une l'animalerie.
+     * @return
+     */
+    public Animal getAnimalCourant() {
+        return animalCourant;
+    }
     /*
     Constructeurs
      */
+    private static Animalerie instance;
+
+    public static Animalerie getInstance() {
+        if(instance == null) {
+            instance = new Animalerie();
+        }
+        return instance;
+    }
 
     /*
     Méthodes
      */
+
+
 }

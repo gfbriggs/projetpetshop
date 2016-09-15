@@ -1,6 +1,10 @@
 package org.fieldenbriggs.petshop.model;
 
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +21,7 @@ public class Animal {
     private String typeAnimal;
     private String race;
     private String nom;
-    private Date dateNaissance;
+    private LocalDate dateNaissance;
     private String proprietaire;
     private List<Evenement> lstEvenements;
 
@@ -29,7 +33,7 @@ public class Animal {
      * Obtient l'age de l'animal
      * @return l'age
      */
-    public Date getDateNaissance() {
+    public LocalDate getDateNaissance() {
         return dateNaissance;
     }
 
@@ -69,10 +73,10 @@ public class Animal {
      * Propriété calculée qui retourne l'age de l'animal selon sa date de naissance
      * @return L'age de l'animal
      */
-    public int getAge(){
+    public Years getAge(){
 
         //// TODO: 8/31/2016 Verifier si ça marche...
-        return new Date().compareTo(dateNaissance) ;
+        return Years.yearsBetween(dateNaissance,new LocalDate()) ;
     }
 
     /**
@@ -107,7 +111,7 @@ public class Animal {
      * @param pRace La race de l'animal
      * @param pDateNaissance La date de naissance de l'animal
      */
-    public  Animal(String pNom, String pType, String pRace, Date pDateNaissance)
+    public  Animal(String pNom, String pType, String pRace, LocalDate pDateNaissance)
     {
         nom = pNom;
         typeAnimal = pType;
@@ -123,7 +127,7 @@ public class Animal {
     @Override
     public String toString()
     {
-        return "Un " + typeAnimal + " de la race " + race +" qui a " + getAge() + " an" + (getAge() > 1 ?"s" :"");
+        return "Un " + typeAnimal + " de la race " + race +" qui a " + getAge() + " an" + (Integer.valueOf(getAge().toString()) > 1 ?"s" :"");
     }
 
 }
