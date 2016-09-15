@@ -21,32 +21,25 @@ import java.util.List;
 
 public class ActivitylistItems extends AppCompatActivity {
     Animalerie animalerie;
-    List<Animal> lstAnimaux;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activitylist_items);
-        /**
-         * La liste courante des animaux de l'application
-         */
 
+        // Animalerie et sa liste
         animalerie = Animalerie.getInstance();
-        // On va chercher les éléments du layout
 
+        // Champs du layout
         ListView lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
+        ////// TODO: 2016-09-15 Faire le add pour un animal
         Button btnAjouter = (Button) findViewById(R.id.btnAddPet);
 
-        // TEMPORAIRE POUR UNE LISTE MOCK
-        lstAnimaux = new ArrayList<>();
-        lstAnimaux = Data.getInstance().ListeAnimaux();
-        // On plug l'adapteur (On doit s'assurer que la liste est vide!)
-        if (!lstAnimaux.isEmpty()) {
-            AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, lstAnimaux);
-            if(!lstAnimaux.isEmpty())
-            {
-                lstviewAnimaux.setAdapter(adapteur);
-            }
-
+        // On va chercher les données dans le jeux de test de datas
+        animalerie.setLstAnimaux(Data.getInstance().ListeAnimaux());
+        // On plug l'adapteur (On doit s'assurer que la liste n'est pas vide!)
+        if (!animalerie.getLstAnimaux().isEmpty()) {
+            AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, animalerie.getLstAnimaux());
+            lstviewAnimaux.setAdapter(adapteur);
 
         }
     }
@@ -54,11 +47,9 @@ public class ActivitylistItems extends AppCompatActivity {
         // On doit set un tag pour le bouton de details.
         public void details (View v)
         {
-            Animal animal = (Animal) v.getTag();
-            animalerie.setAnimalCourant(animal);
+            animalerie.setAnimalCourant((Animal) v.getTag());
             Intent intentVoirAnimalCourant = new Intent(this.getApplicationContext(), ItemDetailActivity.class);
             startActivity(intentVoirAnimalCourant);
-
         }
     }
 

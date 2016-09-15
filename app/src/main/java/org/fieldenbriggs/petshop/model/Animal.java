@@ -3,6 +3,7 @@ package org.fieldenbriggs.petshop.model;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import org.joda.time.Years;
 
 import java.util.ArrayList;
@@ -73,12 +74,13 @@ public class Animal {
      * Propriété calculée qui retourne l'age de l'animal selon sa date de naissance
      * @return L'age de l'animal
      */
-    public Years getAge(){
-
-        //// TODO: 8/31/2016 Verifier si ça marche...
-        return Years.yearsBetween(dateNaissance,new LocalDate()) ;
+    public int getAge(){
+        LocalDate aujourdhui = LocalDate.now();
+        return Years.yearsBetween(dateNaissance,aujourdhui).getYears() ;
     }
 
+    
+    ////// TODO: 2016-09-15 Implementer peut-être un jour.. 
     /**
      * Obtient le proprietaire de l'animal.
      * @return Le nom du propriétaire
@@ -99,6 +101,9 @@ public class Animal {
         return lstEvenements;
     }
 
+    public void setLstEvenements(List<Evenement> lstEvenements) {
+        this.lstEvenements = lstEvenements;
+    }
 
     /*
     Constructeurs
@@ -127,7 +132,7 @@ public class Animal {
     @Override
     public String toString()
     {
-        return "Un " + typeAnimal + " de la race " + race +" qui a " + getAge() + " an" + (Integer.valueOf(getAge().toString()) > 1 ?"s" :"");
+        return "Un " + typeAnimal + " de la race " + race +" qui a " + getAge() + " an" + (getAge() > 1 ?"s" :"");
     }
 
 }

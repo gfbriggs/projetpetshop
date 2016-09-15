@@ -11,7 +11,8 @@ public class Animalerie {
     /*
     Champs
      */
-     Animal animalCourant;
+    private Animal animalCourant;
+    private List<Animal> lstAnimaux;
     /*
     Propriétés
      */
@@ -25,14 +26,30 @@ public class Animalerie {
 
     /**
      * Obtient l'animal courant sur une l'animalerie.
-     * @return
+     * @return L'animal courant pour voir ses details
      */
     public Animal getAnimalCourant() {
         return animalCourant;
     }
-    /*
-    Constructeurs
+
+    /**
+     *Obtient l'animal courant pour le detail d'un animal sur une application animalerie.
+     * @return
      */
+    public List<Animal> getLstAnimaux() {
+        return lstAnimaux;
+    }
+    /**
+     *
+     * @param lstAnimaux
+     */
+    public void setLstAnimaux(List<Animal> lstAnimaux) {
+        this.lstAnimaux = lstAnimaux;
+    }
+
+    /*
+            Constructeurs
+             */
     private static Animalerie instance;
 
     public static Animalerie getInstance() {

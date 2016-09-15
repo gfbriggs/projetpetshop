@@ -1,11 +1,9 @@
 package org.fieldenbriggs.petshop.Interface;
 
-import android.content.Context;
 import android.view.View;
 
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Animalerie;
-import org.fieldenbriggs.petshop.model.Utilisateur;
 
 /**
  * Created by Geoffrey on 8/31/2016.

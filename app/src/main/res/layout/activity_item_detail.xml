@@ -118,7 +118,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="345dp"
-            android:id="@+id/listView2"
+            android:id="@+id/listEvenements"
             android:layout_marginTop="0dp" />
     </LinearLayout>
 

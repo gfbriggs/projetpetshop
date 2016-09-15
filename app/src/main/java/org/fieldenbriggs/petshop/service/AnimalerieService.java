@@ -2,9 +2,8 @@ package org.fieldenbriggs.petshop.service;
 
 
 import android.view.View;
-import android.widget.TextView;
+
 import org.fieldenbriggs.petshop.Interface.IService;
-import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Animalerie;
 
