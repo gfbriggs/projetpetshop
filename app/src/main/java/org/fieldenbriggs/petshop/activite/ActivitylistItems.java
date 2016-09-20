@@ -19,13 +19,12 @@ import org.fieldenbriggs.petshop.service.AnimalerieService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivitylistItems extends AppCompatActivity {
+public class ActivitylistItems extends DrawerActivity {
     Animalerie animalerie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activitylist_items);
-
+        super.onCreate(savedInstanceState);
         // Animalerie et sa liste
         animalerie = Animalerie.getInstance();
 

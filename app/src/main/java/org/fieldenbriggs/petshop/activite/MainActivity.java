@@ -9,13 +9,12 @@ import android.widget.Button;
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.model.Animalerie;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        super.onCreate(savedInstanceState);
         Button btnVoirAnimaux = (Button)findViewById(R.id.btnAnimals);
         btnVoirAnimaux.setOnClickListener(new View.OnClickListener() {
             @Override
