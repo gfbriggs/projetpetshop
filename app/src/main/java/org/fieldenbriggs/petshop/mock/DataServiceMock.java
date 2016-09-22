@@ -10,16 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.mock.BehaviorDelegate;
 
 /**
  * Created by 1354177 on 2016-09-08.
  */
 public class DataServiceMock implements IDataService {
-    private static DataServiceMock instance;
+    BehaviorDelegate<IDataService> delegate;
 
-    public DataServiceMock()
+    List<Animal> animaux = ListeAnimaux();
+    public DataServiceMock(BehaviorDelegate<IDataService> delegate)
     {
-
+        this.delegate = delegate;
     }
 
 
@@ -30,7 +32,7 @@ public class DataServiceMock implements IDataService {
      * Méthode qui retourne une list d'animaux pré-conçu pour tester l'application d'animaleri
      * @return
      */
-    public List<Animal> ListeAnimaux()
+    private List<Animal> ListeAnimaux()
     {
         List<Animal> lstAnimaux = new ArrayList<>();
         // Variable pour la date de naissance.
@@ -47,7 +49,7 @@ public class DataServiceMock implements IDataService {
      * Méthode qui retourne une liste d'
      * @return
      */
-    public List<Evenement> listeEvenements()
+    private List<Evenement> listeEvenements()
     {
         ///// TODO: 2016-09-15 Implementer cette méthode
         List<Evenement> lstEvenements =  new ArrayList<>();
@@ -63,7 +65,7 @@ public class DataServiceMock implements IDataService {
 
     @Override
     public Call<List<Animal>> animals() {
-        return null;
+        return delegate.returningResponse(this.animaux).animals();
     }
 
     @Override

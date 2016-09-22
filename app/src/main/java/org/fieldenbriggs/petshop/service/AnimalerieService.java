@@ -5,6 +5,7 @@ import android.util.Log;
 
 import org.fieldenbriggs.petshop.Interface.IDataService;
 import org.fieldenbriggs.petshop.Interface.IService;
+import org.fieldenbriggs.petshop.mock.DataServiceMock;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Utilisateur;
 
@@ -84,14 +85,8 @@ public class AnimalerieService implements IService {
      */
     @Override
     public void remplirListeUtilisateur() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        IDataService service = retrofit.create(IDataService.class);
-
-        service.users().enqueue(new Callback<List<Utilisateur>>() {
+        RetrofitUtil.getMock().users().enqueue(new Callback<List<Utilisateur>>() {
             @Override
             public void onResponse(Call<List<Utilisateur>> call, Response<List<Utilisateur>> response) {
 
@@ -110,28 +105,8 @@ public class AnimalerieService implements IService {
      */
     @Override
     public void remplirListeAnimaux() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-
-        NetworkBehavior networkBehavior = NetworkBehavior.create();
-        networkBehavior.setDelay(1000, TimeUnit.MILLISECONDS);
-        networkBehavior.setVariancePercent(90);
-
-        MockRetrofit mock = new MockRetrofit.Builder(retrofit)
-                .networkBehavior(networkBehavior)
-                .build();
-
-        BehaviorDelegate<IDataService> delegate = mock.create(IDataService.class);
-
-            
-
-
-        IDataService service = retrofit.create(IDataService.class);
-
-        service.animals().enqueue(new Callback<List<Animal>>() {
+        RetrofitUtil.getMock().animals().enqueue(new Callback<List<Animal>>() {
             @Override
             public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
              List<Animal> lstAnimaux = response.body();
@@ -140,7 +115,7 @@ public class AnimalerieService implements IService {
 
             @Override
             public void onFailure(Call<List<Animal>> call, Throwable t) {
-
+                Log.e("projetpetshop", "onFailure: Error mock! " );
             }
         });
     }
