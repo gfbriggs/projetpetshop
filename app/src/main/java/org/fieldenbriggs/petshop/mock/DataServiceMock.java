@@ -1,6 +1,6 @@
 package org.fieldenbriggs.petshop.mock;
 
-import org.fieldenbriggs.petshop.Interface.IDataService;
+import org.fieldenbriggs.petshop.interfaceanimalerie.IDataService;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Evenement;
 import org.fieldenbriggs.petshop.model.Utilisateur;
@@ -16,18 +16,21 @@ import retrofit2.mock.BehaviorDelegate;
  * Created by 1354177 on 2016-09-08.
  */
 public class DataServiceMock implements IDataService {
-    BehaviorDelegate<IDataService> delegate;
 
+    /*
+    Champs
+     */
+    BehaviorDelegate<IDataService> delegate;
+    List<Utilisateur>  utilisateurs = lstUtilisateurs();
     List<Animal> animaux = ListeAnimaux();
     public DataServiceMock(BehaviorDelegate<IDataService> delegate)
     {
         this.delegate = delegate;
     }
-
-
     /**
      * Méthodes
      */
+
     /***
      * Méthode qui retourne une list d'animaux pré-conçu pour tester l'application d'animaleri
      * @return
@@ -51,11 +54,23 @@ public class DataServiceMock implements IDataService {
      */
     private List<Evenement> listeEvenements()
     {
-        ///// TODO: 2016-09-15 Implementer cette méthode
         List<Evenement> lstEvenements =  new ArrayList<>();
         lstEvenements.add(new Evenement("À mangé du poisson","Repas du midi"));
         lstEvenements.add(new Evenement("À mangé des croquettes","Repas du soir"));
         return  lstEvenements;
+    }
+
+    /**
+     * Méthode qui retourne la liste d'utilisateurs de départ
+     * @return Une liste d'utilisateur
+     */
+    private List<Utilisateur> lstUtilisateurs()
+    {
+        List<Utilisateur> userList = new ArrayList<>();
+        userList.add(new Utilisateur("Geoffrey","fielden.geoffrey@gmail.com","popo"));
+        userList.add(new Utilisateur("Liam","fielden.liam@gmail.com","Liam"));
+        userList.add(new Utilisateur("admin","admin","admin"));
+        return userList;
     }
 
     @Override
@@ -70,6 +85,6 @@ public class DataServiceMock implements IDataService {
 
     @Override
     public Call<List<Utilisateur>> users() {
-        return null;
+        return delegate.returningResponse(this.utilisateurs).users();
     }
 }

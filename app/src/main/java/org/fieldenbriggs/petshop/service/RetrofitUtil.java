@@ -1,6 +1,6 @@
 package org.fieldenbriggs.petshop.service;
 
-import org.fieldenbriggs.petshop.Interface.IDataService;
+import org.fieldenbriggs.petshop.interfaceanimalerie.IDataService;
 import org.fieldenbriggs.petshop.mock.DataServiceMock;
 
 import java.util.concurrent.TimeUnit;
@@ -29,7 +29,7 @@ public class RetrofitUtil {
             return dataMock;
         }
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://allo.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -2,6 +2,7 @@ package org.fieldenbriggs.petshop.activite;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
 import android.view.View;
@@ -10,27 +11,42 @@ import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.adapteur.AnimalAdapter;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
+import org.fieldenbriggs.petshop.service.RetrofitUtil;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivitylistItems extends DrawerActivity {
-    AnimalerieService animalerie;
+    AnimalerieService animalerie = AnimalerieService.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_activitylist_items);
-        super.onCreate(savedInstanceState);
-        animalerie = AnimalerieService.getInstance();
-
-        // Champs du layout
-        ListView lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
-        Button btnAjouter = (Button) findViewById(R.id.btnAddPet);
 
         // On va chercher les données dans le jeux de test de datas
-        animalerie.remplirListeAnimaux();
-        // On plug l'adapteur (On doit s'assurer que la liste n'est pas vide!)
-        if (!animalerie.getLstAnimaux().isEmpty()) {
-            AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, animalerie.getLstAnimaux());
-            lstviewAnimaux.setAdapter(adapteur);
+        setContentView(R.layout.activity_activitylist_items);
+        super.onCreate(savedInstanceState);
 
-        }
+
+        // Champs du layout
+        final ListView lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
+        Button btnAjouter = (Button) findViewById(R.id.btnAddPet);
+
+        // On plug l'adapteur (On doit s'assurer que la liste n'est pas vide!)
+          RetrofitUtil.getMock().animals().enqueue(new Callback<List<Animal>>() {
+            @Override
+            public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
+                animalerie.setLstAnimaux(response.body());
+                AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, animalerie.getLstAnimaux());
+                lstviewAnimaux.setAdapter(adapteur);
+            }
+
+            @Override
+            public void onFailure(Call<List<Animal>> call, Throwable t) {
+                Log.e("projetpetshop", "onFailure: Error mock animaux! " );
+            }
+        });
 
         // Pour le bouton de add
         btnAjouter.setOnClickListener(new View.OnClickListener() {

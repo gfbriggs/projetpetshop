@@ -1,4 +1,4 @@
-package org.fieldenbriggs.petshop.Interface;
+package org.fieldenbriggs.petshop.interfaceanimalerie;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Utilisateur;
 
@@ -14,9 +14,9 @@ public interface IDataService {
     @GET("/")
     Call<String> racine();
 
-    @GET("Data/Animals/")
+    @GET("/animaux/")
     Call<List<Animal>> animals();
 
-    @GET("Data/Users")
+    @GET("/utilisateurs/")
     Call<List<Utilisateur>> users();
 }
