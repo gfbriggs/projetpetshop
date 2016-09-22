@@ -1,24 +1,25 @@
 package org.fieldenbriggs.petshop.mock;
 
+import org.fieldenbriggs.petshop.Interface.IDataService;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Evenement;
+import org.fieldenbriggs.petshop.model.Utilisateur;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
 
 /**
  * Created by 1354177 on 2016-09-08.
  */
-public class Data {
-    private static Data instance;
+public class DataServiceMock implements IDataService {
+    private static DataServiceMock instance;
 
-    public static Data getInstance() {
-        if(instance == null) {
-            instance = new Data();
-        }
-        return instance;
+    public DataServiceMock()
+    {
+
     }
 
 
@@ -53,5 +54,20 @@ public class Data {
         lstEvenements.add(new Evenement("À mangé du poisson","Repas du midi"));
         lstEvenements.add(new Evenement("À mangé des croquettes","Repas du soir"));
         return  lstEvenements;
+    }
+
+    @Override
+    public Call<String> racine() {
+        return null;
+    }
+
+    @Override
+    public Call<List<Animal>> animals() {
+        return null;
+    }
+
+    @Override
+    public Call<List<Utilisateur>> users() {
+        return null;
     }
 }

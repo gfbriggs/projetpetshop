@@ -5,7 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 import org.fieldenbriggs.petshop.R;
 
 
@@ -30,21 +30,26 @@ public class DrawerActivity extends AppCompatActivity {
                 // On fait le tri des items du menu par leur id
                 if(item.getItemId() == R.id.navigation_item_1)
                 {
+
                     Intent intentAccueil = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intentAccueil);
                 }
                 else if (item.getItemId() == R.id.navigation_item_2)
                 {
+
                     Intent intentVoirAnimaux = new Intent(getApplicationContext(), ActivitylistItems.class);
                     startActivity(intentVoirAnimaux);
                 }
                 else if (item.getItemId() == R.id.navigation_item_3)
                 {
-                    Toast.makeText(getApplicationContext(), "Pas encore implement!", Toast.LENGTH_SHORT).show();
+                    Intent intentAddPet = new Intent(getApplicationContext(),AjouterAnimalActivity.class);
+                    startActivity(intentAddPet);
                 }
                 else if (item.getItemId() == R.id.navigation_item_4)
                 {
-                    //// TODO: 9/19/2016 Don't forget to set the user to null on this ples. 
+
+                    //// TODO: 9/19/2016 Don't forget to set the user to null on this ples.
+                    //AnimalerieService.getInstance();
                     Intent intentLog = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intentLog);
                 }

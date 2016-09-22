@@ -1,31 +1,26 @@
 package org.fieldenbriggs.petshop.activite;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.adapteur.EvenementAdapter;
-import org.fieldenbriggs.petshop.model.Animalerie;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
-import org.w3c.dom.Text;
 
 public class ItemDetailActivity extends DrawerActivity {
-    Animalerie animalerie;
+    AnimalerieService animalerie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_item_detail);
         super.onCreate(savedInstanceState);
-        animalerie = Animalerie.getInstance();
+        animalerie = AnimalerieService.getInstance();
         // Champs du layout
         TextView txtinputAnimal = (TextView)findViewById(R.id.inputNomAnimal);
         TextView txtInputAge = (TextView)findViewById(R.id.inputAgeAnimal);
         TextView txtInputType = (TextView)findViewById(R.id.inputTypeAnimal);
         ListView lstView = (ListView) findViewById(R.id.listEvenements);
+        
 
         // On associe les champs
         txtinputAnimal.setText(animalerie.getAnimalCourant().getNom());

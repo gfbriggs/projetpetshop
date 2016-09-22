@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +22,7 @@
         <activity android:name=".activite.MainActivity"></activity>
         <activity android:name=".activite.ActivitylistItems"></activity>
         <activity android:name=".activite.ItemDetailActivity"></activity>
+        <activity android:name=".activite.AjouterAnimalActivity"></activity>
     </application>
 
 </manifest>

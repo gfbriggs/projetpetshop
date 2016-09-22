@@ -1,13 +1,10 @@
 package org.fieldenbriggs.petshop.model;
 
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.Period;
-import org.joda.time.Years;
 
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +20,6 @@ public class Animal {
     private String race;
     private String nom;
     private LocalDate dateNaissance;
-    private String proprietaire;
     private List<Evenement> lstEvenements;
 
     /*
@@ -79,24 +75,6 @@ public class Animal {
         return Years.yearsBetween(dateNaissance,aujourdhui).getYears() ;
     }
 
-    
-    ////// TODO: 2016-09-15 Implementer peut-être un jour.. 
-    /**
-     * Obtient le proprietaire de l'animal.
-     * @return Le nom du propriétaire
-     */
-    public String getProprietaire() {
-        return proprietaire;
-    }
-
-    /**
-     * Definit le proprietaire de l'animal
-     * @param proprietaire Le nom du propriétaire
-     */
-    public void setProprietaire(String proprietaire) {
-        this.proprietaire = proprietaire;
-    }
-
     public List<Evenement> getLstEvenements() {
         return lstEvenements;
     }
@@ -122,7 +100,6 @@ public class Animal {
         typeAnimal = pType;
         race = pRace;
         dateNaissance = pDateNaissance;
-        proprietaire = "Aucun Proprietaire";
         lstEvenements = new ArrayList<>();  
     }
     /*
