@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Petshop</string>
-
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

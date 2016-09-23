@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer"
-    android:fitsSystemWindows="true">
+    android:id="@+id/drawer">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -21,9 +20,9 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:id="@+id/editTypeAnimal"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/editNomAnimal"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/editNomAnimal"
+        android:layout_alignStart="@+id/editNomAnimal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,6 +81,25 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Race de l&apos;animal"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editTypeAnimal"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editRace"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/editDateAnimal"
+        android:layout_alignEnd="@+id/editDateAnimal"
+        android:layout_alignLeft="@+id/editDateAnimal"
+        android:layout_alignStart="@+id/editDateAnimal" />
+
 </RelativeLayout>
 
 <android.support.design.widget.NavigationView
@@ -89,6 +107,7 @@ android:layout_width="wrap_content"
 android:layout_height="match_parent"
 android:layout_gravity="start"
 android:id="@+id/nav_view"
-app:menu="@menu/drawer">
+app:menu="@menu/drawer"
+    app:headerLayout="@layout/drawer_header">
 </android.support.design.widget.NavigationView>
     </android.support.v4.widget.DrawerLayout>

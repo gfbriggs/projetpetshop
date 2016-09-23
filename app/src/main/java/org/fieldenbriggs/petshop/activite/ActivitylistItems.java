@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
 import android.view.View;
+import android.widget.TextView;
 
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.adapteur.AnimalAdapter;
@@ -21,6 +22,7 @@ import retrofit2.Response;
 
 public class ActivitylistItems extends DrawerActivity {
     AnimalerieService animalerie = AnimalerieService.getInstance();
+    TextView txtAnimauxDe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -32,6 +34,8 @@ public class ActivitylistItems extends DrawerActivity {
         // Champs du layout
         final ListView lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
         Button btnAjouter = (Button) findViewById(R.id.btnAddPet);
+        txtAnimauxDe = (TextView) findViewById(R.id.txtAnimauxDe);
+        txtAnimauxDe.setText("Animaux de " + ((animalerie.getUtilisateurCourant() == null)?"Fantome":animalerie.getUtilisateurCourant().getNom()));
 
         // On plug l'adapteur (On doit s'assurer que la liste n'est pas vide!)
           RetrofitUtil.getMock().animals().enqueue(new Callback<List<Animal>>() {

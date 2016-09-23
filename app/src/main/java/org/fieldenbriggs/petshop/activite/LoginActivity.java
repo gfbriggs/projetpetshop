@@ -45,21 +45,21 @@ public class LoginActivity extends AppCompatActivity {
         final EditText motDePasse = (EditText) findViewById(R.id.inPass);
         Button btnLogin = (Button) findViewById(R.id.btnLog);
         Button btnCompte = (Button) findViewById(R.id.btnNew);
-        // Identification des textfields
-       // EditText txtUtil = (EditText) findViewById(R.id.)
+        // Dans la page de log l'utilisateur courant est par default null avant d'être authentifié.
+        animalerie.setUtilisateurCourant(null);
         // Listener de connexion
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(animalerie.motDePasseValide(motDePasse.toString() , animalerie.getUtilisateur(courriel.toString()))
-                        || (courriel.toString().equals("")  && courriel.toString().equals("") ))
+                if(animalerie.motDePasseValide(motDePasse.getText().toString() , animalerie.getUtilisateur(courriel.getText().toString()))
+                        || (courriel.getText().toString().equals("")  && courriel.getText().toString().equals("") ))
                 {
                     Intent intentLoging = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intentLoging);
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Authentification echouer!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Authentification Echouée!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -68,7 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         btnCompte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Pas encore implementé!", Toast.LENGTH_SHORT).show();
+                Intent intentLog = new Intent(getApplicationContext(), AjouterUtilisateurActivity.class);
+                startActivity(intentLog);
             }
         });
     }

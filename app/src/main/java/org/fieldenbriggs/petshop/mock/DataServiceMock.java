@@ -87,4 +87,17 @@ public class DataServiceMock implements IDataService {
     public Call<List<Utilisateur>> users() {
         return delegate.returningResponse(this.utilisateurs).users();
     }
+
+    @Override
+    public Call<Animal> addAnimals(Animal animal) {
+        this.animaux.add(animal);
+        return delegate.returningResponse(animal).addAnimals(animal);
+    }
+
+    @Override
+    public Call<Utilisateur> addUsers(Utilisateur utilisateur) {
+
+        this.utilisateurs.add(utilisateur);
+        return delegate.returningResponse(utilisateur).addUsers(utilisateur);
+    }
 }
