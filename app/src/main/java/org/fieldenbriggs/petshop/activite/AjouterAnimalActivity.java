@@ -9,7 +9,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
+import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
+import org.fieldenbriggs.petshop.service.RetrofitUtil;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Geoffrey on 8/26/2016.
@@ -37,8 +45,17 @@ public class AjouterAnimalActivity extends DrawerActivity {
         addPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animalerie.ajouterAnimal(txtNomAnimal.getText().toString(),txtTypeAnimal.getText().toString(),txtRaceAnimal.getText().toString(),txtDateAnimal.getText().toString());
-                Toast.makeText(AjouterAnimalActivity.this, "Sucess!", Toast.LENGTH_LONG).show();
+                RetrofitUtil.getMock().addAnimals(new Animal(txtNomAnimal.getText().toString(),txtTypeAnimal.getText().toString(),txtRaceAnimal.getText().toString(), LocalDate.parse(txtDateAnimal.getText().toString()))).enqueue(new Callback<Animal>() {
+                    @Override
+                    public void onResponse(Call<Animal> call, Response<Animal> response) {
+                        Toast.makeText(AjouterAnimalActivity.this, "Sucess!", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Animal> call, Throwable t) {
+                        Toast.makeText(AjouterAnimalActivity.this, "L'animal ne peut être ajouté", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 Intent intentLoging = new Intent(getApplicationContext(), ActivitylistItems.class);
                 startActivity(intentLoging);
             }
