@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNomAnimal"
+        android:layout_marginTop="51dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTypeAnimal"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/editNomAnimal"
+        android:layout_alignStart="@+id/editNomAnimal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nom de l'animal"
+        android:id="@+id/txtName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Type de l'animal"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/editNomAnimal"
+        android:layout_alignLeft="@+id/txtName"
+        android:layout_alignStart="@+id/txtName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date de naissance"
+        android:id="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter l'animal"
+        android:id="@+id/btnAddPet"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/editDateAnimal"
+        android:layout_alignLeft="@+id/editTypeAnimal"
+        android:layout_alignStart="@+id/editTypeAnimal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/btnCancel"
+        android:layout_alignTop="@+id/btnAddPet"
+        android:layout_alignRight="@+id/editTypeAnimal"
+        android:layout_alignEnd="@+id/editTypeAnimal" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editDateAnimal"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Race de l&apos;animal"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editTypeAnimal"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editRace"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/editDateAnimal"
+        android:layout_alignEnd="@+id/editDateAnimal"
+        android:layout_alignLeft="@+id/editDateAnimal"
+        android:layout_alignStart="@+id/editDateAnimal" />
+
+</RelativeLayout>
+
+<android.support.design.widget.NavigationView
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:layout_gravity="start"
+android:id="@+id/nav_view"
+app:menu="@menu/drawer"
+    app:headerLayout="@layout/drawer_header">
+</android.support.design.widget.NavigationView>
+    </android.support.v4.widget.DrawerLayout>
