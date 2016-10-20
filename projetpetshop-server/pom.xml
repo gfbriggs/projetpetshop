@@ -26,5 +26,11 @@
       <artifactId>gson</artifactId>
       <version>2.7</version>
     </dependency>
+    <dependency>
+      <groupId>org.fieldenbriggs</groupId>
+      <artifactId>projetpetshop-commons</artifactId>
+      <version>1.0</version>
+    </dependency>
+
   </dependencies>
 </project>
