@@ -9,10 +9,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
+import org.fieldenbriggs.petshop.model.Utilisateur;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
+import org.fieldenbriggs.petshop.service.RetrofitUtil;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AjouterUtilisateurActivity extends AppCompatActivity {
-    AnimalerieService animalerie = AnimalerieService.getInstance();
+
     EditText txtNomUtilisateur;
     EditText txtCourrielUtilisateur;
     EditText txtMotDePasseUtilisateur;
@@ -36,10 +42,20 @@ public class AjouterUtilisateurActivity extends AppCompatActivity {
         btnAjouterUtilisateur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animalerie.ajouterUtilisateur(txtNomUtilisateur.getText().toString(),txtCourrielUtilisateur.getText().toString(),txtMotDePasseUtilisateur.getText().toString());
-                Toast.makeText(AjouterUtilisateurActivity.this, "Utilisateur ajouté!", Toast.LENGTH_SHORT).show();
-                Intent intentLog = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intentLog);
+                RetrofitUtil.getMock().addUsers(new Utilisateur(txtNomUtilisateur.getText().toString(),txtCourrielUtilisateur.getText().toString(),txtMotDePasseUtilisateur.getText().toString())).enqueue(new Callback<Utilisateur>() {
+                    @Override
+                    public void onResponse(Call<Utilisateur> call, Response<Utilisateur> response) {
+                        Toast.makeText(AjouterUtilisateurActivity.this, "Utilisateur ajouté!", Toast.LENGTH_SHORT).show();
+                        Intent intentLog = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intentLog);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Utilisateur> call, Throwable t) {
+                        Toast.makeText(AjouterUtilisateurActivity.this, "L'utilisateur ne peut être ajouté!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 

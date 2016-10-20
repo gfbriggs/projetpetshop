@@ -23,6 +23,7 @@ import retrofit2.Response;
 public class ActivitylistItems extends DrawerActivity {
     AnimalerieService animalerie = AnimalerieService.getInstance();
     TextView txtAnimauxDe;
+    ListView lstviewAnimaux;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -32,12 +33,12 @@ public class ActivitylistItems extends DrawerActivity {
 
 
         // Champs du layout
-        final ListView lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
+        lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
         Button btnAjouter = (Button) findViewById(R.id.btnAddPet);
         txtAnimauxDe = (TextView) findViewById(R.id.txtAnimauxDe);
         txtAnimauxDe.setText("Animaux de " + ((animalerie.getUtilisateurCourant() == null)?"Fantome":animalerie.getUtilisateurCourant().getNom()));
 
-        // On plug l'adapteur (On doit s'assurer que la liste n'est pas vide!)
+        // On va chercher la liste des animaux
           RetrofitUtil.getMock().animals().enqueue(new Callback<List<Animal>>() {
             @Override
             public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
