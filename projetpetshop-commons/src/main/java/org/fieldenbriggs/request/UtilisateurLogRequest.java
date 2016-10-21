@@ -1,9 +1,10 @@
-package org.fieldenbriggs.send;
+package org.fieldenbriggs.request;
 
 /**
  * Created by 1354177 on 2016-10-20.
+ *
  */
-public class UtilisateurSend {
+public class UtilisateurLogRequest {
     private String authentifiant;
     private String motDePasse;
 
@@ -11,15 +12,15 @@ public class UtilisateurSend {
         return motDePasse;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
 
     public String getAuthentifiant() {
         return authentifiant;
     }
 
-    public void setAuthentifiant(String authentifiant) {
-        this.authentifiant = authentifiant;
+
+    public UtilisateurLogRequest(String pAuthentifiant , String pMotDePasse)
+    {
+            motDePasse = pMotDePasse;
+            authentifiant = pAuthentifiant;
     }
 }

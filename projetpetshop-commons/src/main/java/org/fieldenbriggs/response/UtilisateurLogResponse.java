@@ -1,9 +1,9 @@
-package org.fieldenbriggs.receive;
+package org.fieldenbriggs.response;
 
 /**
  * Created by 1354177 on 2016-10-20.
  */
-public class UtilisateurReceive {
+public class UtilisateurLogResponse {
     private long id;
     private String nom;
 
