@@ -8,9 +8,9 @@ import java.util.List;
  */
 public class Data {
 
- List<Animal> lstAnimeux;
+ private List<Animal> lstAnimeux;
 
- List<Utilisateur> lstUtilisateurs;
+ private List<Utilisateur> lstUtilisateurs;
 
 
 

@@ -1,14 +1,7 @@
 package org.fieldenbriggs;
 
 /**
- * Hello world!
- *
+ * Created by Geoffrey on 10/23/2016.
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-
-    }
+public class app {
 }

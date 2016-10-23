@@ -6,7 +6,6 @@ package org.fieldenbriggs.response;
 public class UtilisateurLogResponse {
     private long id;
     private String nom;
-
     public String getCourriel() {
         return courriel;
     }
