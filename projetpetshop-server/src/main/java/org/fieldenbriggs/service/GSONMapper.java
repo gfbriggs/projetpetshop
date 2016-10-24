@@ -18,72 +18,74 @@ import java.lang.reflect.Type;
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class GSONMapper<T> implements MessageBodyReader<T>, MessageBodyWriter<T> {
+public class GSONMapper implements MessageBodyWriter<Object>, MessageBodyReader<Object> {
+    private static final String UTF_8 = "UTF-8";
 
-    private static final String PRETTY_PRINT = "pretty-print";
+    private Gson gson;
 
-    private final Gson gson;
-    private final Gson prettyGson;
-
-    @Context
-    private UriInfo ui;
-
-    public GSONMapper() {
-        GsonBuilder builder = new GsonBuilder()
-                .serializeNulls()
-                .enableComplexMapKeySerialization();
-
-        this.gson = builder.create();
-        this.prettyGson = builder.setPrettyPrinting().create();
-    }
-
-
-    public boolean isReadable(Class<?> type, Type genericType,
-                              Annotation[] annotations, MediaType mediaType) {
-        return true;
-    }
-
-    public T readFrom(Class<T> type, Type genericType, Annotation[] annotations,
-                      MediaType mediaType, MultivaluedMap<String, String> httpHeaders,
-                      InputStream entityStream) throws IOException, WebApplicationException {
-
-        InputStreamReader reader = new InputStreamReader(entityStream, "UTF-8");
-        try {
-            return gson.fromJson(reader, type);
-        } finally {
-            reader.close();
+    private Gson getGson() {
+        if(gson == null) {
+            gson = new Gson();
         }
+
+        return gson;
     }
 
-
-    public boolean isWriteable(Class<?> type, Type genericType,
-                               Annotation[] annotations, MediaType mediaType) {
+    public boolean isReadable(Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType) {
         return true;
     }
 
+    public Object readFrom(Class<Object> aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> multivaluedMap, InputStream inputStream) throws IOException, WebApplicationException {
+        System.out.println(aClass.toString());
+        System.out.println(type.toString());
 
-    public long getSize(T t, Class<?> type, Type genericType,
-                        Annotation[] annotations, MediaType mediaType) {
+        InputStreamReader streamReader = null;
+
+        try {
+            streamReader = new InputStreamReader(inputStream, UTF_8);
+            Type jsonType;
+
+            if(aClass.equals(type)) {
+                jsonType = aClass;
+            } else {
+                jsonType = type;
+            }
+
+            return getGson().fromJson(streamReader, jsonType);
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            streamReader.close();
+        }
+
+        return null;
+    }
+
+    public boolean isWriteable(Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType) {
+        return true;
+    }
+
+    public long getSize(Object o, Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType) {
         return -1;
     }
 
+    public void writeTo(Object o, Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
+        OutputStreamWriter writer = new OutputStreamWriter(outputStream, UTF_8);
 
-    public void writeTo(T t, Class<?> type, Type genericType, Annotation[] annotations,
-                        MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
-                        OutputStream entityStream) throws IOException, WebApplicationException {
-
-        PrintWriter printWriter = new PrintWriter(entityStream);
         try {
-            String json;
-            if (ui.getQueryParameters().containsKey(PRETTY_PRINT)){
-                json = prettyGson.toJson(t);
+            Type jsonType;
+
+            if(aClass.equals(type)) {
+                jsonType = aClass;
             } else {
-                json = gson.toJson(t);
+                jsonType = type;
             }
-            printWriter.write(json);
-            printWriter.flush();
+
+            getGson().toJson(o, type, writer);
+        } catch(Exception e) {
+            e.printStackTrace();
         } finally {
-            printWriter.close();
+            writer.close();
         }
     }
 }

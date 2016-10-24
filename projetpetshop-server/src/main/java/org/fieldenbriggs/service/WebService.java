@@ -57,13 +57,16 @@ public class WebService {
     //==============================================================================================================================================================================
     @POST
     @Path("signin")
-    public String authentifierUtilisateur(UtilisateurLogRequest pUserRequest)
+    public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest)
     {
     // TODO: 10/21/2016 Trouver l'utilisateur par son courriel
 
     // TODO: 10/21/2016 Valider son mot de passe
-
-    return "Hello";
+        UtilisateurLogResponse util = new UtilisateurLogResponse();
+        util.setId(1);
+        util.setCourriel("Allo@allo.com");
+        util.setNom("Geoffrey");
+    return util;
     }
 
     /**

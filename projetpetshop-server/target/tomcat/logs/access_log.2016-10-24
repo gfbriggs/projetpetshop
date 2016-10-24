@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:03:14 -0400] "GET / HTTP/1.1" 304 - http-bio-8080-exec-2 48
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:03:21 -0400] "GET /api/hello HTTP/1.1" 200 5 http-bio-8080-exec-3 684
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:03:21 -0400] "GET /api/hello HTTP/1.1" 200 5 http-bio-8080-exec-1 577
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:03:41 -0400] "POST /api/hello HTTP/1.1" 405 1013 http-bio-8080-exec-6 5
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:03:48 -0400] "GET /api/hello HTTP/1.1" 200 5 http-bio-8080-exec-7 3
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:03:55 -0400] "GET /api/signin HTTP/1.1" 405 1013 http-bio-8080-exec-8 2
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:04:02 -0400] "POST /api/signin HTTP/1.1" 415 1092 http-bio-8080-exec-9 10
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:04:20 -0400] "POST /api/signin HTTP/1.1" 200 5 http-bio-8080-exec-10 37
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:06:27 -0400] "POST /api/signin HTTP/1.1" 200 5 http-bio-8080-exec-1 6
+0:0:0:0:0:0:0:1 - - [24/Oct/2016:19:06:57 -0400] "POST /api/signin HTTP/1.1" 200 52 http-bio-8080-exec-1 668
