@@ -2,6 +2,7 @@ package org.fieldenbriggs.service;
 
 import com.google.gson.Gson;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
+import org.fieldenbriggs.model.Animal;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
 import org.fieldenbriggs.receive.UtilisateurReceive;
@@ -14,19 +15,21 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.util.ArrayList;
 
 /**
  * Created by 1354177 on 2016-10-20.
- * Contients les méthodes de services côté serveur pour l'application petshot
+ * Contient les méthodes de service côté serveur pour l'application petshop
  */
 @Path("/")
 public class WebService {
-    /*
-    @GET @Path("hello")
-            public String hello()
+
+    @GET @Path("flush")
+    public String flush()
     {
-        return "Hello";
-    } */
+        data = null;
+        return "flush success!";
+    }
     private Data data;
      /*
      Méthodes de service

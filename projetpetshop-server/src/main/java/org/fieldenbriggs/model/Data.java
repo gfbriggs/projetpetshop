@@ -20,8 +20,8 @@ public class Data {
         return instance;
     }
 
-    private List<Animal> lstAnimaux;
- private List<Utilisateur> lstUtilisateurs;
+    List<Animal> lstAnimaux;
+    List<Utilisateur> lstUtilisateurs;
 
  public List<Animal> getLstAnimeux() {
   return lstAnimaux;

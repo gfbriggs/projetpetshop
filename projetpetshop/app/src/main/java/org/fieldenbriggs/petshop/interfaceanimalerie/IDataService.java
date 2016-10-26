@@ -1,6 +1,8 @@
 package org.fieldenbriggs.petshop.interfaceanimalerie;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Utilisateur;
+import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.UtilisateurLogResponse;
 
 import java.util.List;
 import retrofit2.Call;
@@ -11,7 +13,7 @@ import retrofit2.http.POST;
  * Created by Geoffrey on 9/22/2016.
  */
 public interface IDataService {
-
+    // Temp
     @GET("/")
     Call<String> racine();
 
@@ -25,4 +27,22 @@ public interface IDataService {
     Call<Animal> addAnimals(Animal animal);
     @POST("/utilisateurs/")
     Call<Utilisateur> addUsers(Utilisateur utilisateur);
+
+
+
+    // Retrofit de serveur
+
+
+
+    //Retrofit du local
+
+
+    @GET("http://localhost:8080/api/")
+    Call<String> racineLocal();
+
+    @POST("http://localhost:8080/api/signin")
+    Call<UtilisateurLogResponse> signIn(UtilisateurLogRequest utiliRequest);
+
+
+
 }
