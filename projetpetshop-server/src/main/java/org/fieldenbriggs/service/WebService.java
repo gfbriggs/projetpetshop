@@ -46,6 +46,7 @@ public class WebService {
     @Path("signin")
     public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest) throws  AuthentificationErrorException
     {
+        System.out.println("La requete est passé!");
         // On trouve l'utilisateur et on valide le mot de passe
         Utilisateur utilisateurRechercher = getUser(pUserRequest.getAuthentifiant().toLowerCase());
         verifyPassword(utilisateurRechercher.getMotDePass(),pUserRequest.getMotDePasse());

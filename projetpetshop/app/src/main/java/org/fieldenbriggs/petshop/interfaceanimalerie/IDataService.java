@@ -30,19 +30,6 @@ public interface IDataService {
 
 
 
-    // Retrofit de serveur
-
-
-
-    //Retrofit du local
-
-
-    @GET("http://localhost:8080/api/")
-    Call<String> racineLocal();
-
-    @POST("http://localhost:8080/api/signin")
-    Call<UtilisateurLogResponse> signIn(UtilisateurLogRequest utiliRequest);
-
 
 
 }

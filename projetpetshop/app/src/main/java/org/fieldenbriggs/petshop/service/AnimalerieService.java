@@ -1,11 +1,18 @@
 package org.fieldenbriggs.petshop.service;
 
 
+import org.fieldenbriggs.petshop.interfaceanimalerie.IDataService;
+import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Utilisateur;
+import org.fieldenbriggs.response.UtilisateurLogResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 /**
@@ -14,10 +21,11 @@ import java.util.List;
 public class AnimalerieService  {
 
     private static AnimalerieService instance;
-    private Utilisateur utilisateurCourant;
+    private UtilisateurLogResponse utilisateurCourant;
     private Animal animalCourant;
     private List<Animal> lstAnimaux;
     private List<Utilisateur> lstUtilisteurs;
+    private IWebService server;
 
     public static AnimalerieService getInstance() {
         if(instance == null) {
@@ -28,6 +36,14 @@ public class AnimalerieService  {
 
     public AnimalerieService()
     {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        server = retrofit.create(IWebService.class);
         lstAnimaux = new ArrayList<>();
     }
 
@@ -51,19 +67,11 @@ public class AnimalerieService  {
         this.lstAnimaux = lstAnimaux;
     }
 
-    public List<Utilisateur> getLstUtilisteurs() {
-        return lstUtilisteurs;
-    }
-
-    public void setLstUtilisteurs(List<Utilisateur> lstUtilisteurs) {
-        this.lstUtilisteurs = lstUtilisteurs;
-    }
-
     /**
      * Définit l'utilisateur Courant de l'application
-     * @param utilisateurCourant
+     * @param utilisateurCourant yep
      */
-    public void setUtilisateurCourant(Utilisateur utilisateurCourant) {
+    public void setUtilisateurCourant(UtilisateurLogResponse utilisateurCourant) {
         this.utilisateurCourant = utilisateurCourant;
     }
 
@@ -71,49 +79,26 @@ public class AnimalerieService  {
      * Obtient l'utilisateur courant de l'application
      * @return
      */
-    public Utilisateur getUtilisateurCourant() {
+    public UtilisateurLogResponse getUtilisateurCourant() {
         return utilisateurCourant;
     }
     /*====================================================================================================================================================================
     Méthodes
      ====================================================================================================================================================================*/
-    /***
-     * Méthode qui permet de vérifie si un utilisateur existe et est valide.
-     * @param pCourriel
-     * @return
-     */
-    public Utilisateur getUtilisateur(String pCourriel) {
-        Utilisateur userCourant = new Utilisateur("test","test","test");
-        for (Utilisateur user:lstUtilisteurs) {
-            if (pCourriel.equals(user.getCourriel()))
-            {
-                userCourant = user;
-            }
-        }
-        return userCourant;
-    }
-
-
-
-
-
-
 
     /**
-     * Verifie le mot de passe de l'utilisateur pour authentifier la connexion.
-     * @param pMotdePasse
-     * @param pUtilisateur
+     * Méthode qui permet de faire des appels pour aller chercher le server
      * @return
      */
-    public Boolean motDePasseValide(String pMotdePasse , Utilisateur pUtilisateur)
+    public IWebService getServer()
     {
-        if(pMotdePasse.equals(pUtilisateur.getMotDePasse()))
-        {
-            setUtilisateurCourant(pUtilisateur);
-            return true;
-        }
-        return false;
+        return server;
     }
+
+
+
+
+
 
 
 }

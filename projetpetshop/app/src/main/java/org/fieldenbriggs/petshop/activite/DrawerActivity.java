@@ -35,7 +35,7 @@ public class DrawerActivity extends AppCompatActivity {
         navHeader = nav_view.getHeaderView(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         header = (TextView)navHeader.findViewById(R.id.txtDrawerHeader);
-        header.setText("Animalerie de " +((animalerie.getUtilisateurCourant() == null)?"Fantome":animalerie.getUtilisateurCourant().getNom()) );
+        header.setText("Animalerie de " + animalerie.getUtilisateurCourant().getNom() + "\n Courriel:" + animalerie.getUtilisateurCourant().getCourriel() );
         // Pour aller chercher les elements de la nav
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

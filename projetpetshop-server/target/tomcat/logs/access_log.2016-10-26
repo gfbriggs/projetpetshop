@@ -1,3 +1,14 @@
 0:0:0:0:0:0:0:1 - - [26/Oct/2016:11:28:07 -0400] "GET / HTTP/1.1" 200 57 http-bio-8080-exec-2 37
 0:0:0:0:0:0:0:1 - - [26/Oct/2016:11:28:08 -0400] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-3 2
 0:0:0:0:0:0:0:1 - - [26/Oct/2016:11:29:09 -0400] "POST /api/signin HTTP/1.1" 200 50 http-bio-8080-exec-5 750
+127.0.0.1 - - [26/Oct/2016:16:43:01 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-1 672
+127.0.0.1 - - [26/Oct/2016:16:43:31 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-3 11
+127.0.0.1 - - [26/Oct/2016:17:37:33 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-1 535
+127.0.0.1 - - [26/Oct/2016:18:17:44 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-1 780
+127.0.0.1 - - [26/Oct/2016:18:44:00 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-3 4
+127.0.0.1 - - [26/Oct/2016:18:51:20 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-5 3
+127.0.0.1 - - [26/Oct/2016:18:54:36 -0400] "POST /api/signin/ HTTP/1.1" 500 5863 http-bio-8080-exec-7 17
+127.0.0.1 - - [26/Oct/2016:18:56:48 -0400] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8080-exec-8 3
+127.0.0.1 - - [26/Oct/2016:19:01:03 -0400] "POST /api/signin/ HTTP/1.1" 500 5863 http-bio-8080-exec-10 8
+127.0.0.1 - - [26/Oct/2016:19:01:08 -0400] "POST /api/signin/ HTTP/1.1" 500 5863 http-bio-8080-exec-1 7
+127.0.0.1 - - [26/Oct/2016:19:01:20 -0400] "POST /api/signin/ HTTP/1.1" 500 5863 http-bio-8080-exec-2 6

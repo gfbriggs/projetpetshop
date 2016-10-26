@@ -4,6 +4,8 @@ import org.fieldenbriggs.petshop.interfaceanimalerie.IDataService;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Evenement;
 import org.fieldenbriggs.petshop.model.Utilisateur;
+import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.UtilisateurLogResponse;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -100,4 +102,6 @@ public class DataServiceMock implements IDataService {
         this.utilisateurs.add(utilisateur);
         return delegate.returningResponse(utilisateur).addUsers(utilisateur);
     }
+
+
 }
