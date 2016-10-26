@@ -2,6 +2,7 @@ package org.fieldenbriggs.service;
 
 import com.google.gson.Gson;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
+import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
 import org.fieldenbriggs.receive.UtilisateurReceive;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
@@ -20,11 +21,45 @@ import javax.ws.rs.PathParam;
  */
 @Path("/")
 public class WebService {
+    /*
     @GET @Path("hello")
             public String hello()
     {
         return "Hello";
+    } */
+    private Data data;
+     /*
+     Méthodes de service
+      */
+    //==============================================================================================================================================================================
+    /**
+     * Permet d'identifier un utilisateur, si l'utilisateur est identifié avec succès ses informations
+     * de compte sont retournés pour l'affichage
+     * @param pUserRequest La requete utilisateur
+     * @return Une string d'objet contenant les informations à afficher
+     */
+    //==============================================================================================================================================================================
+    @POST
+    @Path("signin")
+    public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest) throws  AuthentificationErrorException
+    {
+        // On trouve l'utilisateur et on valide le mot de passe
+        Utilisateur utilisateurRechercher = getUser(pUserRequest.getAuthentifiant().toLowerCase());
+        verifyPassword(utilisateurRechercher.getMotDePass(),pUserRequest.getMotDePasse());
+
+
+        // Si le tout passe on construit le package de retour
+        UtilisateurLogResponse util = new UtilisateurLogResponse();
+        util.setCourriel(utilisateurRechercher.getCourriel());
+        util.setId(utilisateurRechercher.getId());
+        util.setNom(utilisateurRechercher.getNom());
+        // On revoit le package au serveur
+        return util;
     }
+
+    /*
+    Méthodes utilitaires
+     */
     //==============================================================================================================================================================================
     /**
      * Verifie si le mot de passe de l'utilisateur est bon
@@ -34,7 +69,7 @@ public class WebService {
      * @throws AuthentificationErrorException Si le mot de passe entré n'est pas le bon
      */
     //==============================================================================================================================================================================
-    boolean verifyPassword(String userPass , String enteredPass) throws AuthentificationErrorException
+     boolean verifyPassword(String userPass , String enteredPass) throws AuthentificationErrorException
     {
     if(userPass.equals(enteredPass))
     {
@@ -49,31 +84,29 @@ public class WebService {
     }
     //==============================================================================================================================================================================
     /**
-     * Permet d'identifier un utilisateur, si l'utilisateur est identifié avec succès ses informations
-     * de compte sont retournés pour l'affichage
-     * @param pUserRequest La requete utilisateur
-     * @return Une string d'objet contenant les informations à afficher
+     * Méthode qui permet de trouver un utilisateur par son courriel
+     * @param pCourriel  Le courriel de l'utilisateur
+     * @return l'utilisateur
      */
     //==============================================================================================================================================================================
-    @POST
-    @Path("signin")
-    public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest)
+    Utilisateur getUser(String pCourriel) throws AuthentificationErrorException
     {
-    // TODO: 10/21/2016 Trouver l'utilisateur par son courriel
+        //
+        data = Data.getInstance();
+        Utilisateur userRecherche = new Utilisateur(0,"","","");
 
-    // TODO: 10/21/2016 Valider son mot de passe
-        UtilisateurLogResponse util = new UtilisateurLogResponse();
-    return util;
-    }
+        for (Utilisateur user: data.getLstUtilisateurs()) {
+            if (user.getCourriel().equals(pCourriel))
+            {
+                userRecherche = user;
+            }
+        }
+        if(userRecherche.getId() == 0)
+        {
+            throw new AuthentificationErrorException();
+        }
+        return userRecherche;
 
-    /**
-     * Méthode qui permet de trouver un utilisateur par son courriel
-     * @param pCourriel
-     * @return
-     */
-    private Utilisateur getUser(String pCourriel)
-    {
-        throw new NotImplementedException();
     }
 
 

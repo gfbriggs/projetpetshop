@@ -6,6 +6,7 @@ package org.fieldenbriggs.response;
 public class UtilisateurLogResponse {
     private long id;
     private String nom;
+    private String courriel;
     public String getCourriel() {
         return courriel;
     }
@@ -30,6 +31,6 @@ public class UtilisateurLogResponse {
         this.nom = nom;
     }
 
-    private String courriel;
+
 
 }

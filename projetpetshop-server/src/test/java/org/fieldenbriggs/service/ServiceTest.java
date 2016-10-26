@@ -4,11 +4,14 @@ package org.fieldenbriggs.service;
 import com.google.gson.Gson;
 
 import org.fieldenbriggs.exception.AuthentificationErrorException;
+import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.UtilisateurLogResponse;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Created by Geoffrey on 10/21/2016.
@@ -54,7 +57,37 @@ public class ServiceTest {
         //Quand on appelle la méthode il devrait nous redonner true
 
     }
+    //==============================================================================================================================================================================
+    /**
+     * Test qui va nous sortir un bon utilisateur des données, le test devrait nous retourner le bon utilisateur.
+     */
+    //==============================================================================================================================================================================
+    @Test
+    public  void getUserBon() throws AuthentificationErrorException
+    {
+        // On essaie avec le premier utilisateur
+        String email = "test@gmail.com";
+        Utilisateur user = webService.getUser(email);
+        Assert.assertEquals(user.getCourriel() , email);
 
+        // On en fait un deuxième pour être sur
+        email = "test2@gmail.com";
+        user = webService.getUser(email);
+        Assert.assertEquals(user.getCourriel(),email);
+    }
+
+    /**
+     * Ce test va passer un mauvais courriel utilisateur et il est supposer attraper une authentification exception.
+     * @throws AuthentificationErrorException
+     */
+    @Test(expected = AuthentificationErrorException.class)
+    public void getUserFail() throws  AuthentificationErrorException
+    {
+        // On essaie avec le premier utilisateur avec un mauvais courriel
+        String email = "tes24t@gmail.com";
+        Utilisateur user = webService.getUser(email);
+
+    }
 
     //==============================================================================================================================================================================
     /**
@@ -78,6 +111,48 @@ public class ServiceTest {
         // On test si les valeurs sont pareilles
         Assert.assertEquals(userR.getMotDePasse(), userR2.getMotDePasse());
         Assert.assertEquals(userR.getAuthentifiant(),userR2.getAuthentifiant());
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Test qui va voir si la réponse du serveur pour une requete utilisateur, le package
+     * retourné doit être le bon du  bon utilisateur.
+     * @throws AuthentificationErrorException
+     */
+    //==============================================================================================================================================================================
+    @Test
+    public void authentifierUtilisateurBon() throws  AuthentificationErrorException
+    {
+        // On va construire un package request
+
+        UtilisateurLogRequest ur = new UtilisateurLogRequest("test@gmail.com","admin");
+        UtilisateurLogResponse ures = webService.authentifierUtilisateur(ur);
+
+        Assert.assertEquals(ures.getCourriel() ,"test@gmail.com");
+        Assert.assertEquals(ures.getNom(),"admin");
+        Assert.assertEquals(ures.getId(),1);
+
+        // On va refaire le test avec des caps dans l'adresse pour être sur que cela aussi marche
+
+         ur = new UtilisateurLogRequest("TEST@gmail.com","admin");
+         ures = webService.authentifierUtilisateur(ur);
+
+        Assert.assertEquals(ures.getCourriel() ,"test@gmail.com");
+        Assert.assertEquals(ures.getNom(),"admin");
+        Assert.assertEquals(ures.getId(),1);
+
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Ce test va passer  un mauvais utilisateur et il doit retourner une erreur d'authentification
+     * @throws AuthentificationErrorException
+     */
+    //==============================================================================================================================================================================
+    @Test(expected = AuthentificationErrorException.class)
+    public void authentifierUserMauvais() throws  AuthentificationErrorException
+    {
+        UtilisateurLogRequest ur = new UtilisateurLogRequest("merde@gmail.com","admin");
+        UtilisateurLogResponse ures = webService.authentifierUtilisateur(ur);
+
     }
 
 }
