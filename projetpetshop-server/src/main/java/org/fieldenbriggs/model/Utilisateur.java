@@ -1,5 +1,7 @@
 package org.fieldenbriggs.model;
 
+import java.util.List;
+
 /**
  * Created by Geoffrey on 10/20/2016.
  */
@@ -8,6 +10,12 @@ public class Utilisateur {
     private String courriel;
     private String nom;
     private String motDePass;
+
+    public List<Animal> getLstAnimaux() {
+        return lstAnimaux;
+    }
+
+    private List<Animal>lstAnimaux;
 
     public long getId() {
         return id;

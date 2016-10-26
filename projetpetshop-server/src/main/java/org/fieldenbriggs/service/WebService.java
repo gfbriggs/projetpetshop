@@ -63,9 +63,6 @@ public class WebService {
 
     // TODO: 10/21/2016 Valider son mot de passe
         UtilisateurLogResponse util = new UtilisateurLogResponse();
-        util.setId(1);
-        util.setCourriel("Allo@allo.com");
-        util.setNom("Geoffrey");
     return util;
     }
 
