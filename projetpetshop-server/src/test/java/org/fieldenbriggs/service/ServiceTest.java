@@ -4,6 +4,7 @@ package org.fieldenbriggs.service;
 import com.google.gson.Gson;
 
 import org.fieldenbriggs.exception.AuthentificationErrorException;
+import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
@@ -153,6 +154,17 @@ public class ServiceTest {
         UtilisateurLogRequest ur = new UtilisateurLogRequest("merde@gmail.com","admin");
         UtilisateurLogResponse ures = webService.authentifierUtilisateur(ur);
 
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Ce test va vérifier si la vérification de courriel pour un ajout utilisateur fonctionne
+     * Il renvoie une exception lorsqu'il ne trouve rien.
+     */
+    //==============================================================================================================================================================================
+    @Test(expected = ErrorAjoutUtilisateurException.class)
+    public void  verifyCourrielMauvais()
+    {
+        
     }
 
 }
