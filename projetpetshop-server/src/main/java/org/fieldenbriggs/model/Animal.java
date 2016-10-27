@@ -7,5 +7,7 @@ public class Animal {
     private long id;
     private long utilisateurid;
     String nom;
+    String type;
+
 
 }

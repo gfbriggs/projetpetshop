@@ -3,15 +3,21 @@ package org.fieldenbriggs.service;
 import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
+import org.fieldenbriggs.model.Animal;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.validation.constraints.AssertFalse;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import java.util.List;
 
 /**
  * Created by 1354177 on 2016-10-20.
@@ -53,6 +59,12 @@ public class WebService {
         return new UtilisateurLogResponse(utilisateurRechercher.getId(),utilisateurRechercher.getCourriel(),utilisateurRechercher.getNom());
     }
 
+    /**
+     * Méthode qui va ajouter un utilisateur à l'animalerie.
+     * @param pAddUserRequest
+     * @return
+     * @throws ErrorAjoutUtilisateurException
+     */
     @POST @Path("adduser")
     public UtilisateurLogResponse ajouterUnUtilisateur(AddUtilisateurRequest pAddUserRequest) throws ErrorAjoutUtilisateurException
     {
@@ -76,6 +88,13 @@ public class WebService {
         }
 
 
+    }
+
+
+    @GET @Path("getanimals/{id}")
+     public List<AnimalListResponse> getAnimals(@PathParam("id") long id)
+    {
+        throw new  NotImplementedException();
     }
 
     /*
@@ -157,7 +176,6 @@ public class WebService {
         return userRecherche;
 
     }
-
 
     void verifyUtilisateurExiste(String pCourriel) throws ErrorAjoutUtilisateurException
     {
