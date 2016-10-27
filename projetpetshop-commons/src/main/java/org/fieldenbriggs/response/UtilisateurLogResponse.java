@@ -11,26 +11,23 @@ public class UtilisateurLogResponse {
         return courriel;
     }
 
-    public void setCourriel(String courriel) {
-        this.courriel = courriel;
-    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
+    public UtilisateurLogResponse(long pId , String pCourriel , String pNom)
+    {
+        this.id = pId;
+        this.nom = pNom;
+        this.courriel = pCourriel;
+    }
 
 
 }

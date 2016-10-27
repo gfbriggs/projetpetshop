@@ -1,5 +1,6 @@
 package org.fieldenbriggs.petshop.interfaceanimalerie;
 
+import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 
@@ -25,6 +26,12 @@ public interface IWebService {
     @GET("api/")
     Call<String> racineLocal();
 
+    @GET("api/flush/")
+    Call<String> flush();
+
     @POST("api/signin/")
     Call<UtilisateurLogResponse> signin(@Body UtilisateurLogRequest utilisateurLogRequest);
+
+    @POST("api/adduser/")
+    Call<UtilisateurLogResponse> adduser(@Body AddUtilisateurRequest userRequest);
 }

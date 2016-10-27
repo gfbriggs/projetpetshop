@@ -1,3 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\1354177\.m2\repository\org\fieldenbriggs\projetpetshop-commons\1.0\projetpetshop-commons-1.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="45ea630320285c1bc7f540889969565df7f82e3b">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\projetpetshop-commons-1.0_3f7e09a4d7baa1083ab6aad182d1f437636d1e8a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_06cc0fc3a89f91c8865a997f7e8b632825c5bf15\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_a5b468caa88fca17816154b33999bdf66406779c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_83655d257bcbbb692caa72d6ad4bccef6341e5f1\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.1.0\aa557d71ead91cbf26e0c316a0f593d168303309\converter-gson-2.1.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-gson-2.1.0_78040b86bcce1331d89ec12bc85477d1f4e2ea97\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.9.4\1c295b462f16702ebe720bbb08f62e1ba80da41b\joda-time-2.9.4.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1c295b462f16702ebe720bbb08f62e1ba80da41b">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\joda-time-2.9.4_b80fa08d9d979a7fa0030de253334bd597413ba2\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f7c418237083bfde465f1ebd252ac2ab378ef476">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7eefa4e6daa78d3faaa087606e7342d538277647\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.8.0_1d341f9d0c6bdfe943f77f9526d559ae41524edd\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit-mock\2.1.0\ae1dbbe1b9d17afb1d93b1eb3fd23dfc07ff6be4\retrofit-mock-2.1.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ae1dbbe1b9d17afb1d93b1eb3fd23dfc07ff6be4">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-mock-2.1.0_7d2e5bcb36eec110f6c76d27903ee4f5c7992840\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.0_fbf266499600a5c7857e4898aef4adb107ec0dbc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_fc18a0fdc80391aaf9a93e629f1a6f03cf6a9cf4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_c221b8cd3b8d0bc1d75494ab953f91d8769ecb14\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-scalars\2.0.2\a3bfef8122db8c395b4dc7c9845e27829bf6a6f9\converter-scalars-2.0.2.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a3bfef8122db8c395b4dc7c9845e27829bf6a6f9">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-scalars-2.0.2_ac47e6626547353918f9052e366f05d513ec0256\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.1.0_ce2aa9bf4136f5deb5678da299cb9289cf9b556d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.7_6cdab0182b9b532c1c673c9110d4eb5b9c01abd3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_2961076b3ea8e4ba27aa284b3b50e534a21114a8\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_3b39fbb2bf4d9237de2cad1c848cb3e90728f111\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="31f83c7b39d1b63e5881f1209bded62a8c6dbda7">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a48b6f82b6cd4d1f64e033e655ae18387c1c3cad\classes.dex" />
+    </item>
+    <item
+        jar="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Espace Labo\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_611144125662ff945bcb4909eb5dce902c6576c0\classes.dex" />
+    </item>
+
+</items>

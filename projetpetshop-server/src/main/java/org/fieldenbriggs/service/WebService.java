@@ -1,23 +1,17 @@
 package org.fieldenbriggs.service;
 
-import com.google.gson.Gson;
+import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
-import org.fieldenbriggs.model.Animal;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
-import org.fieldenbriggs.receive.UtilisateurReceive;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-import org.fieldenbriggs.send.UtilisateurSend;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import java.util.ArrayList;
 
 /**
  * Created by 1354177 on 2016-10-20.
@@ -55,31 +49,33 @@ public class WebService {
 
 
         // Si le tout passe on construit le package de retour
-        UtilisateurLogResponse util = new UtilisateurLogResponse();
-        util.setCourriel(utilisateurRechercher.getCourriel());
-        util.setId(utilisateurRechercher.getId());
-        util.setNom(utilisateurRechercher.getNom());
-        // On revoit le package au serveur
-        return util;
+        // Et on revoit le package au serveur
+        return new UtilisateurLogResponse(utilisateurRechercher.getId(),utilisateurRechercher.getCourriel(),utilisateurRechercher.getNom());
     }
 
     @POST @Path("adduser")
     public UtilisateurLogResponse ajouterUnUtilisateur(AddUtilisateurRequest pAddUserRequest) throws ErrorAjoutUtilisateurException
     {
-        // TODO: 10/26/2016 Implementer cette méthode
-
+        System.out.println("Rêquete envoyé avec : "+ pAddUserRequest.getNom() +", "+ pAddUserRequest.getCourriel() +", "+ pAddUserRequest.getMotDePasse());
         // Vérifier si il y a déjà un utilisateur avec le même courriel
-        verifyCourriel(pAddUserRequest.getCourriel());
+        verifyUtilisateurExiste(pAddUserRequest.getCourriel());
 
         // Si non on vérifie que le courriel est un couriel valide
+        if(EmailValidator.getInstance().isValid(pAddUserRequest.getCourriel()))
+        {
+            // On ajoute l'utilisateur au data en lui attribuant un nouveau ID
+            Utilisateur newUser = new Utilisateur(data.getLstUtilisateurs().size()+1,pAddUserRequest.getCourriel().toLowerCase(), pAddUserRequest.getNom(), pAddUserRequest.getMotDePasse());
+            data.getLstUtilisateurs().add(newUser);
+
+            // On crée et retourne la response pour logger l'utilisateur au besoin
+            return new UtilisateurLogResponse(newUser.getId(),newUser.getCourriel(),newUser.getNom());
+        }
+        else
+        {
+            throw  new ErrorAjoutUtilisateurException();
+        }
 
 
-
-        // On ajoute l'utilisateur au data en lui attribuant un nouveau ID
-
-
-
-        throw  new NotImplementedException();
     }
 
     /*
@@ -163,7 +159,7 @@ public class WebService {
     }
 
 
-    void verifyCourriel(String pCourriel) throws ErrorAjoutUtilisateurException
+    void verifyUtilisateurExiste(String pCourriel) throws ErrorAjoutUtilisateurException
     {
         //
         data = Data.getInstance();

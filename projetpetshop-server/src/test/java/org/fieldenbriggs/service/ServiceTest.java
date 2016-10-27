@@ -7,6 +7,7 @@ import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
+import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 import org.junit.Assert;
@@ -157,14 +158,38 @@ public class ServiceTest {
     }
     //==============================================================================================================================================================================
     /**
-     * Ce test va vérifier si la vérification de courriel pour un ajout utilisateur fonctionne
-     * Il renvoie une exception lorsqu'il ne trouve rien.
+     * Ce test va vérifier si la vérification d'utilisateur pour un ajout utilisateur fonctionne
+     * Il renvoie une exception lorsqu'il trouve que l'utilisateur existe.
      */
     //==============================================================================================================================================================================
     @Test(expected = ErrorAjoutUtilisateurException.class)
-    public void  verifyCourrielMauvais()
+    public void  verifyUserMauvais() throws ErrorAjoutUtilisateurException
     {
-        
+        webService.verifyUtilisateurExiste("test@gmail.com");
+    }
+
+    /**
+     * Ce test va vérifie si l'ajout d'utilisateur fonctionne
+     */
+    @Test
+    public void ajoutUtilisateurBon() throws ErrorAjoutUtilisateurException, AuthentificationErrorException
+    {
+        // On flush le data d'abord pour être sur que le tout fonctionne
+        webService.flush();
+        // On va crée un package d'ajout pour ajouter un utilisateur
+        AddUtilisateurRequest userAdd = new AddUtilisateurRequest("fielden.geoffrey@gmail.com","Geoffrey","Passw0rd");
+        // On fait l'ajout
+        UtilisateurLogResponse reponseLog = webService.ajouterUnUtilisateur(userAdd);
+        //  On regarde si notre add a reussi et si il nous renvoie la bonne réponse
+
+        Assert.assertEquals(userAdd.getCourriel(),reponseLog.getCourriel());
+        Assert.assertEquals(userAdd.getNom(),reponseLog.getNom());
+
+        // On va récuperer notre utilisateur pour voir si le id renvoyé est le bon
+
+        Utilisateur user = webService.getUser(userAdd.getCourriel());
+
+        Assert.assertEquals(user.getId(),reponseLog.getId());
     }
 
 }
