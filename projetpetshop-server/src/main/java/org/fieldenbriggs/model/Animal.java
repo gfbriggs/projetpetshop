@@ -2,6 +2,9 @@ package org.fieldenbriggs.model;
 
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
+import java.util.Date;
 
 /**
  * Created by Geoffrey on 10/20/2016.
@@ -32,14 +35,14 @@ public class Animal {
         return nom;
     }
 
-    public DateTime getDateNaissance() {
+    public LocalDate getDateNaissance() {
         return dateNaissance;
     }
 
     private String nom;
-    private DateTime dateNaissance;
+    private LocalDate dateNaissance;
 
-    public Animal(long pId, long pUserId, String pType, String pRace, String pNom , DateTime pDatenaissance)
+    public Animal(long pId, long pUserId, String pType, String pRace, String pNom , LocalDate pDatenaissance)
     {
         this.id = pId;
         this.utilisateurId = pUserId;

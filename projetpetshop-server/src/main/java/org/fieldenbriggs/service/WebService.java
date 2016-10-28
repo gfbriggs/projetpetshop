@@ -20,6 +20,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -213,6 +214,11 @@ public class WebService {
 
     }
 
+    /**
+     *
+     * @param pCourriel
+     * @throws ErrorAjoutUtilisateurException
+     */
     void verifyUtilisateurExiste(String pCourriel) throws ErrorAjoutUtilisateurException
     {
         //
@@ -230,6 +236,25 @@ public class WebService {
             throw new ErrorAjoutUtilisateurException();
         }
 
+    }
+
+    /**
+     * Méthode qui va contruire une liste d'animaux pour afficher
+     * @param userID
+     * @return
+     */
+    private List<AnimalListResponse> createAnimalListFromID(long userID)
+    {
+        List<AnimalListResponse> lstAnimaux =  new ArrayList<AnimalListResponse>();
+
+        for ( Animal animal: data.getLstAnimaux()) {
+            if(userID == animal.getUtilisateurId())
+            {
+                AnimalListResponse animalAAjouter = new AnimalListResponse(animal.getId(),animal.getTypeAnimal(),animal.getRace());
+                lstAnimaux.add(animalAAjouter);
+            }
+
+        }
     }
 
 }

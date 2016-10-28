@@ -1,6 +1,11 @@
 package org.fieldenbriggs.model;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,9 +25,9 @@ public class Data {
         return instance;
     }
 
-    List<Animal> lstAnimaux;
-    List<Utilisateur> lstUtilisateurs;
-    List<Evenement> lstEvenement;
+    private List<Animal> lstAnimaux;
+    private List<Utilisateur> lstUtilisateurs;
+    private List<Evenement> lstEvenement;
 
  public List<Animal> getLstAnimeux() {
   return lstAnimaux;
@@ -43,7 +48,7 @@ public class Data {
 
 
  /**
-  * Constructeur
+  * Constructeur et données de départ
   */
  public Data()
  {
@@ -56,11 +61,17 @@ public class Data {
      getLstUtilisateurs().add(user1);
      user1 = new Utilisateur(3,"test3@gmail.com","admin3","admin3");
      getLstUtilisateurs().add(user1);
+     getLstAnimaux().add(new Animal(1,1,"Chat","Abyssin","Fluffy", new LocalDate(2016,4,5)));
+     getLstAnimaux().add(new Animal(2,1,"Chien","Colley","Sparky",new LocalDate(2013,4,10)));
+     getLstAnimaux().add(new Animal(3,2,"Chat","Espagnol","Meow",new LocalDate(2015,4,6)));
+     getLstAnimaux().add(new Animal(4,2,"Chat","Bengal","sirLancelot",new LocalDate(2014,3,5)));
+     getLstAnimaux().add(new Animal(5,3,"Chien","Bulldog","Popotte",new LocalDate(2016,6,13)));
+     getLstAnimaux().add(new Animal(6,3,"Chien","Teckel","saussice",new LocalDate(2016,6,13)));
+
+
  }
 
- /**
-  * Cette méthode initialise les données de départ pour l'application du petshop
-  */
+
 
 
 
