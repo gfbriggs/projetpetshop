@@ -18,8 +18,6 @@ public class Animal {
         Champs
          */
     private long utilisateurId;
-
-
     private long id;
     private String typeAnimal;
     private String race;

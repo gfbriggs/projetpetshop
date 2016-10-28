@@ -1,13 +1,16 @@
 package org.fieldenbriggs.service;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
 import org.fieldenbriggs.model.Animal;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
+import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -89,14 +92,47 @@ public class WebService {
 
 
     }
-
-
+    //==============================================================================================================================================================================
+    /**
+     * Méthode qui va chercher les animaux d'un utilisateur identifié pour afficher
+     * la liste sur l'application
+     * @param id Le ID de l'utilisateur
+     * @return La liste des animaux à afficher
+     */
+    //==============================================================================================================================================================================
     @GET @Path("getanimals/{id}")
      public List<AnimalListResponse> getAnimals(@PathParam("id") long id)
     {
+        // TODO: 10/28/2016 Cette méthode
         throw new  NotImplementedException();
     }
-
+    //==============================================================================================================================================================================
+    /**
+     * Méthode qui permet d'afficher les detail d'un animal sur une liste selon son ID
+     * @param id
+     * @return
+     */
+    //==============================================================================================================================================================================
+    @GET @Path("getanimaldetail/{{id}}")
+     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id)
+    {
+        // TODO: 10/28/2016  Cette méthode pour afficher le detail d'un animal
+        throw  new NotImplementedException();
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Cette méthode permet à l'utilisateur d'ajouter un animal
+     * @param pAddAnimalRequest La rquête pour l'ajout d'un animal
+     * @return La liste des animaux mis à jour pour pouvoir l'afficher
+     */
+    //==============================================================================================================================================================================
+    @POST
+    @Path("addanimal")
+    public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest)
+    {
+        // TODO: 10/28/2016  Cette méthode à implanter
+        throw  new NotImplementedException();
+    }
     /*
     Mét14
     +hodes utilitaires

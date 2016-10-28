@@ -22,22 +22,25 @@ public class Data {
 
     List<Animal> lstAnimaux;
     List<Utilisateur> lstUtilisateurs;
+    List<Evenement> lstEvenement;
 
  public List<Animal> getLstAnimeux() {
   return lstAnimaux;
  }
 
- public void setLstAnimeux(List<Animal> lstAnimeux) {
-  this.lstAnimaux = lstAnimeux;
- }
+    public List<Evenement> getLstEvenement() {
+        return lstEvenement;
+    }
+
+    public List<Animal> getLstAnimaux() {
+        return lstAnimaux;
+    }
+
 
  public List<Utilisateur> getLstUtilisateurs() {
   return lstUtilisateurs;
  }
 
- public void setLstUtilisateurs(List<Utilisateur> lstUtilisateurs) {
-  this.lstUtilisateurs = lstUtilisateurs;
- }
 
  /**
   * Constructeur
@@ -46,6 +49,7 @@ public class Data {
  {
      this.lstUtilisateurs = new ArrayList<Utilisateur>();
      this.lstAnimaux =  new ArrayList<Animal>();
+     this.lstEvenement = new ArrayList<Evenement>();
      Utilisateur user1 =  new Utilisateur(1,"test@gmail.com","admin","admin");
      getLstUtilisateurs().add(user1);
      user1 = new Utilisateur(2,"test2@gmail.com","admin2","admin2");
