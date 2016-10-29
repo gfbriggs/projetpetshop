@@ -19,16 +19,18 @@ public interface IDataService {
 
     @GET("/animaux/")
     Call<List<Animal>> animals();
-
+    /*
     @GET("/utilisateurs/")
     Call<List<Utilisateur>> users();
+    */
 
     @POST("/animaux/")
     Call<Animal> addAnimals(Animal animal);
+    /*
     @POST("/utilisateurs/")
     Call<Utilisateur> addUsers(Utilisateur utilisateur);
 
-
+    */
 
 
 

@@ -23,7 +23,7 @@ public class DataServiceMock implements IDataService {
     Champs
      */
     BehaviorDelegate<IDataService> delegate;
-    List<Utilisateur>  utilisateurs = lstUtilisateurs();
+
     List<Animal> animaux = ListeAnimaux();
     public DataServiceMock(BehaviorDelegate<IDataService> delegate)
     {
@@ -62,18 +62,7 @@ public class DataServiceMock implements IDataService {
         return  lstEvenements;
     }
 
-    /**
-     * Méthode qui retourne la liste d'utilisateurs de départ
-     * @return Une liste d'utilisateur
-     */
-    private List<Utilisateur> lstUtilisateurs()
-    {
-        List<Utilisateur> userList = new ArrayList<>();
-        userList.add(new Utilisateur("Geoffrey","fielden.geoffrey@gmail.com","popo"));
-        userList.add(new Utilisateur("Liam","fielden.liam@gmail.com","Liam"));
-        userList.add(new Utilisateur("admin","admin","admin"));
-        return userList;
-    }
+
 
     @Override
     public Call<String> racine() {
@@ -85,10 +74,7 @@ public class DataServiceMock implements IDataService {
         return delegate.returningResponse(this.animaux).animals();
     }
 
-    @Override
-    public Call<List<Utilisateur>> users() {
-        return delegate.returningResponse(this.utilisateurs).users();
-    }
+
 
     @Override
     public Call<Animal> addAnimals(Animal animal) {
@@ -96,12 +82,7 @@ public class DataServiceMock implements IDataService {
         return delegate.returningResponse(animal).addAnimals(animal);
     }
 
-    @Override
-    public Call<Utilisateur> addUsers(Utilisateur utilisateur) {
 
-        this.utilisateurs.add(utilisateur);
-        return delegate.returningResponse(utilisateur).addUsers(utilisateur);
-    }
 
 
 }

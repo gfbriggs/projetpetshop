@@ -5,11 +5,14 @@ import android.support.v4.media.MediaMetadataCompat;
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
+import java.util.List;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -68,6 +71,21 @@ public class ServiceTest {
         Assert.assertEquals(reponse.getId(), userLogged.getId());
         Assert.assertEquals(reponse.getNom(), userLogged.getNom());
         Assert.assertEquals(reponse.getCourriel(), userLogged.getCourriel());
+    }
+
+
+    @Test
+    public void callGetAnimaux() throws Exception
+    {
+        // On récupère la liste des animaux avec le call au serveur
+        List<AnimalListResponse> animalListResponses = service.getAnimaux(1).execute().body();
+        // On verifie si la liste est bien retournée avec tous ses élements
+        Assert.assertEquals(animalListResponses.size(),2);
+
+        // On s'assure que les objets sont complet et bien retournés
+
+        Assert.assertEquals(animalListResponses.get(0).getNom(),"Fluffy");
+        Assert.assertEquals(animalListResponses.get(1).getNom(),"Sparky");
     }
 
 

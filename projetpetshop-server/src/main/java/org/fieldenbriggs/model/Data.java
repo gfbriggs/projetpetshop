@@ -1,11 +1,6 @@
 package org.fieldenbriggs.model;
-
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,15 +22,11 @@ public class Data {
 
     private List<Animal> lstAnimaux;
     private List<Utilisateur> lstUtilisateurs;
-    private List<Evenement> lstEvenement;
+
 
  public List<Animal> getLstAnimeux() {
   return lstAnimaux;
  }
-
-    public List<Evenement> getLstEvenement() {
-        return lstEvenement;
-    }
 
     public List<Animal> getLstAnimaux() {
         return lstAnimaux;
@@ -54,7 +45,6 @@ public class Data {
  {
      this.lstUtilisateurs = new ArrayList<Utilisateur>();
      this.lstAnimaux =  new ArrayList<Animal>();
-     this.lstEvenement = new ArrayList<Evenement>();
      Utilisateur user1 =  new Utilisateur(1,"test@gmail.com","admin","admin");
      getLstUtilisateurs().add(user1);
      user1 = new Utilisateur(2,"test2@gmail.com","admin2","admin2");

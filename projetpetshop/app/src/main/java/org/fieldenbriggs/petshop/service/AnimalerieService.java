@@ -5,6 +5,7 @@ import org.fieldenbriggs.petshop.interfaceanimalerie.IDataService;
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
 import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.model.Utilisateur;
+import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class AnimalerieService  {
     private static AnimalerieService instance;
     private UtilisateurLogResponse utilisateurCourant;
     private Animal animalCourant;
-    private List<Animal> lstAnimaux;
+    private List<AnimalListResponse> lstAnimaux;
     private List<Utilisateur> lstUtilisteurs;
     private IWebService server;
 
@@ -55,7 +56,7 @@ public class AnimalerieService  {
         return animalCourant;
     }
 
-    public List<Animal> getLstAnimaux() {
+    public List<AnimalListResponse> getLstAnimaux() {
         return lstAnimaux;
     }
 
@@ -63,7 +64,7 @@ public class AnimalerieService  {
         this.animalCourant = animalCourant;
     }
 
-    public void setLstAnimaux(List<Animal> lstAnimaux) {
+    public void setLstAnimaux(List<AnimalListResponse> lstAnimaux) {
         this.lstAnimaux = lstAnimaux;
     }
 

@@ -1,25 +1,29 @@
 package org.fieldenbriggs.service;
 
-
 import com.google.gson.Gson;
-
+import org.fieldenbriggs.exception.AnimalNonDisponibleException;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
 import org.fieldenbriggs.model.Data;
 import org.fieldenbriggs.model.Utilisateur;
+import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.AnimalDetailResponse;
+import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import java.util.List;
 
 /**
  * Created by Geoffrey on 10/21/2016.
+ * Classe de test pour le webService de l'animalerie
  */
 public class ServiceTest {
-    WebService webService;
+    private WebService webService;
     @Before
     public void initialise()
     {
@@ -167,10 +171,11 @@ public class ServiceTest {
     {
         webService.verifyUtilisateurExiste("test@gmail.com");
     }
-
+    //==============================================================================================================================================================================
     /**
      * Ce test va vérifie si l'ajout d'utilisateur fonctionne
      */
+    //==============================================================================================================================================================================
     @Test
     public void ajoutUtilisateurBon() throws ErrorAjoutUtilisateurException, AuthentificationErrorException
     {
@@ -191,5 +196,81 @@ public class ServiceTest {
 
         Assert.assertEquals(user.getId(),reponseLog.getId());
     }
+    //==============================================================================================================================================================================
+    /**
+     * Ce test va regarder si les bons animaux sont retourné lors du get
+     */
+    //==============================================================================================================================================================================
+    @Test
+    public void getAnimaux()
+    {
+
+        // On va tester la liste du premier utilisateur avec les paramêtres pour être sur qu'il va
+        // Chercher les bonnes entrés
+
+        List<AnimalListResponse> lstAnimaux = webService.getAnimals(1);
+
+        Assert.assertEquals(lstAnimaux.size(),2);
+        Assert.assertEquals(lstAnimaux.get(0).getNom(),"Fluffy");
+        Assert.assertEquals(lstAnimaux.get(1).getNom(),"Sparky");
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Ce test va verifier si les bon datas son récupérés pour un id animal
+     */
+    //==============================================================================================================================================================================
+    @Test
+    public  void getAnimalDetailBon() throws AnimalNonDisponibleException
+    {
+        // On récupère l'obje à l'aide de l'appel
+        AnimalDetailResponse response = webService.getAnimalDetail(1);
+
+        // On vérifie si les détails récupéré sont bon
+        Assert.assertEquals(response.getNom(),"Fluffy");
+        Assert.assertEquals(response.getType(),"Chat");
+        Assert.assertEquals(response.getRace(),"Abyssin");
+        Assert.assertEquals(response.getDateDeNaissance(),new LocalDate(2016,4,5));
+
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Ce test va s'assurer que si on appel un animal qui n'existe pas l'exception est lancé
+     * @throws AnimalNonDisponibleException
+     */
+    //==============================================================================================================================================================================
+    @Test(expected = AnimalNonDisponibleException.class)
+    public void  getAnimalDetailMauvais() throws AnimalNonDisponibleException
+    {
+        // On récupère l'objet à l'aide de l'appel avec un id qui n'éxiste pas et il devrait nous lancer l'exception
+        AnimalDetailResponse response = webService.getAnimalDetail(0);
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Ce test va vérifer si l'ajout d'animal se fait comme il faut dans la liste.
+     */
+    //==============================================================================================================================================================================
+    @Test
+    public void addAnimalSuccess()
+    {
+        // On construit une requête d'ajout d'animal
+        AddAnimalRequest request = new AddAnimalRequest(1,"karka","Chat","Bengal",new LocalDate(2016,5,12));
+        // On flush le data pour être sur de pouvoir refaire se test à répétition
+        webService.flush();
+        // On apelle la requete
+        AnimalListResponse response = webService.ajouterUnAnimal(request);
+
+        // On verifie les données de la réponse
+
+        Assert.assertEquals(response.getId(),7);
+        Assert.assertEquals(response.getNom(),"karka");
+        Assert.assertEquals(response.getType(),"Chat");
+
+        // On regarde si l'entrée est dans la liste
+
+        Assert.assertEquals(Data.getInstance().getLstAnimaux().get(6).getId(),7);
+
+    }
+
+
 
 }

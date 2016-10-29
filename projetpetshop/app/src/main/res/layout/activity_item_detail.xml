@@ -94,37 +94,17 @@
                 android:text="Type input"
                 android:layout_marginTop="9dp"/>
         </LinearLayout>
-
-
-
-
+        
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Derniers repas"
-            android:id="@+id/txtLatestMeals"
-            android:layout_gravity="bottom" />
-        </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="5">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="345dp"
-            android:id="@+id/listEvenements"
-            android:layout_marginTop="0dp" />
     </LinearLayout>
 
 </LinearLayout>

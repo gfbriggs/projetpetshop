@@ -1,7 +1,7 @@
 package org.fieldenbriggs.service;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.commons.validator.EmailValidator;
+import org.fieldenbriggs.exception.AnimalNonDisponibleException;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
 import org.fieldenbriggs.model.Animal;
@@ -15,7 +15,7 @@ import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import javax.validation.constraints.AssertFalse;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -104,8 +104,10 @@ public class WebService {
     @GET @Path("getanimals/{id}")
      public List<AnimalListResponse> getAnimals(@PathParam("id") long id)
     {
-        // TODO: 10/28/2016 Cette méthode
-        throw new  NotImplementedException();
+        System.out.println("Requete passée pour les animaux de l'utilisateur n." + id);
+        // On revoie la liste qu'on a crée au préalable avec la méthode.
+
+        return createAnimalListFromID(id);
     }
     //==============================================================================================================================================================================
     /**
@@ -114,29 +116,44 @@ public class WebService {
      * @return
      */
     //==============================================================================================================================================================================
-    @GET @Path("getanimaldetail/{{id}}")
-     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id)
+    @GET @Path("getanimaldetail/{id}")
+     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id) throws AnimalNonDisponibleException
     {
-        // TODO: 10/28/2016  Cette méthode pour afficher le detail d'un animal
-        throw  new NotImplementedException();
+        // On s'assure que le data de base est crée et instancié
+        data = Data.getInstance();
+        // On va chercher un bon animal par son id
+        for (Animal animal: data.getLstAnimeux()) {
+            if(animal.getId() == id)
+            {
+                return new AnimalDetailResponse(animal.getNom(),animal.getTypeAnimal(),animal.getRace(),animal.getDateNaissance());
+            }
+        }
+        throw  new AnimalNonDisponibleException();
     }
     //==============================================================================================================================================================================
     /**
      * Cette méthode permet à l'utilisateur d'ajouter un animal
      * @param pAddAnimalRequest La rquête pour l'ajout d'un animal
-     * @return La liste des animaux mis à jour pour pouvoir l'afficher
+     * @return Le message de succès.
      */
     //==============================================================================================================================================================================
     @POST
     @Path("addanimal")
     public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest)
     {
-        // TODO: 10/28/2016  Cette méthode à implanter
-        throw  new NotImplementedException();
+        // Il y a moins de validation à faire sur un animal que sur un utilisateur
+        // Un utilisateur peux avoir 2 animaux du même nom
+        // On s'assure que le data est instancié
+        data = Data.getInstance();
+        // On contruit l'objet
+        Animal animalAAjouter = new Animal(data.getLstAnimaux().size() + 1,pAddAnimalRequest.getUserId(),pAddAnimalRequest.getType(),pAddAnimalRequest.getRace(),pAddAnimalRequest.getNom(),pAddAnimalRequest.getDateDeNaissance());
+        data.getLstAnimeux().add(animalAAjouter);
+
+        // On fait la réponse pour la rajouter à la liste
+        return new AnimalListResponse(animalAAjouter.getId(),animalAAjouter.getTypeAnimal(),animalAAjouter.getNom()) ;
     }
     /*
-    Mét14
-    +hodes utilitaires
+    méthodes utilitaires
      */
     //==============================================================================================================================================================================
     /**
@@ -169,7 +186,7 @@ public class WebService {
     //==============================================================================================================================================================================
     Utilisateur getUser(String pCourriel) throws AuthentificationErrorException
     {
-        //
+
         data = Data.getInstance();
         Utilisateur userRecherche = new Utilisateur(0,"","","");
 
@@ -213,12 +230,13 @@ public class WebService {
         return userRecherche;
 
     }
-
+    //==============================================================================================================================================================================
     /**
      *
      * @param pCourriel
      * @throws ErrorAjoutUtilisateurException
      */
+    //==============================================================================================================================================================================
     void verifyUtilisateurExiste(String pCourriel) throws ErrorAjoutUtilisateurException
     {
         //
@@ -237,24 +255,27 @@ public class WebService {
         }
 
     }
-
+    //==============================================================================================================================================================================
     /**
      * Méthode qui va contruire une liste d'animaux pour afficher
-     * @param userID
-     * @return
+     * @param userID Le ID de l'utilisateur pour qui on créé la liste
+     * @return la liste des items animaux pour afficher dans l'application
      */
+    //==============================================================================================================================================================================
     private List<AnimalListResponse> createAnimalListFromID(long userID)
     {
+        data = Data.getInstance();
         List<AnimalListResponse> lstAnimaux =  new ArrayList<AnimalListResponse>();
 
         for ( Animal animal: data.getLstAnimaux()) {
             if(userID == animal.getUtilisateurId())
             {
-                AnimalListResponse animalAAjouter = new AnimalListResponse(animal.getId(),animal.getTypeAnimal(),animal.getRace());
+                AnimalListResponse animalAAjouter = new AnimalListResponse(animal.getId(),animal.getTypeAnimal(),animal.getNom());
                 lstAnimaux.add(animalAAjouter);
             }
 
         }
+        return lstAnimaux;
     }
 
 }

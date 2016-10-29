@@ -10,14 +10,15 @@ import android.widget.TextView;
 
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.model.Animal;
+import org.fieldenbriggs.response.AnimalListResponse;
 
 import java.util.List;
 
 /**
  * Created by 1354177 on 2016-09-01.
  */
-public class AnimalAdapter extends ArrayAdapter<Animal> {
-    public AnimalAdapter(Context context, List<Animal> animaux)
+public class AnimalAdapter extends ArrayAdapter<AnimalListResponse> {
+    public AnimalAdapter(Context context, List<AnimalListResponse> animaux)
     {
         super(context, R.layout.animal_list_item,animaux);
     }
@@ -27,7 +28,7 @@ public class AnimalAdapter extends ArrayAdapter<Animal> {
         // On inflate
         LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
         View row = inflater.inflate(R.layout.animal_list_item, parent, false);
-        Animal item = getItem(position);
+        AnimalListResponse item = getItem(position);
         // On set les items
         row.findViewById(R.id.detailsButton).setTag(item);
         // remplir le layout avec les bonnes valeurs
@@ -36,7 +37,7 @@ public class AnimalAdapter extends ArrayAdapter<Animal> {
         nomAnimal.setText(item.getNom());
         //TYPE
         TextView typeAnimal = (TextView) row.findViewById(R.id.animal_type);
-        typeAnimal.setText(item.getTypeAnimal());
+        typeAnimal.setText(item.getType());
         row.setTag(item);
         return row;
     }
