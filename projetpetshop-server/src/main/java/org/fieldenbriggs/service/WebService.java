@@ -13,7 +13,6 @@ import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 import javax.ws.rs.GET;
@@ -62,13 +61,14 @@ public class WebService {
         // Et on revoit le package au serveur
         return new UtilisateurLogResponse(utilisateurRechercher.getId(),utilisateurRechercher.getCourriel(),utilisateurRechercher.getNom());
     }
-
+    //==============================================================================================================================================================================
     /**
      * Méthode qui va ajouter un utilisateur à l'animalerie.
      * @param pAddUserRequest
      * @return
      * @throws ErrorAjoutUtilisateurException
      */
+    //==============================================================================================================================================================================
     @POST @Path("adduser")
     public UtilisateurLogResponse ajouterUnUtilisateur(AddUtilisateurRequest pAddUserRequest) throws ErrorAjoutUtilisateurException
     {
