@@ -5,13 +5,17 @@ import android.support.v4.media.MediaMetadataCompat;
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Retrofit;
@@ -88,6 +92,24 @@ public class ServiceTest {
         Assert.assertEquals(animalListResponses.get(1).getNom(),"Sparky");
     }
 
+    @Test
+    public void callGetAnimalDetail() throws Exception
+    {
+        // On va regarder si le service peut récupérer le bon id avec l'appel
+        // On construit l'animal receveur (hehe)
+        AnimalDetailResponse response = service.getAnimalDetail(1).execute().body();
+        Assert.assertEquals(response.getNom(),"Fluffy");
+        Assert.assertEquals(response.getType(),"Chat");
+        Assert.assertEquals(response.getRace(),"Abyssin");
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.MONTH, Calendar.APRIL);
+        cal.set(Calendar.DAY_OF_MONTH, 5);
 
+        // On a besoin d'un fix de date pour ça dans le converter
+        Assert.assertEquals(response.getDateDeNaissance().getDate(),cal.getTime().getDate());
+
+
+    }
 
 }

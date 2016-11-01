@@ -69,7 +69,7 @@ public class ActivitylistItems extends DrawerActivity {
         // On doit set un tag pour le bouton de details.
         public void details (View v)
         {
-            animalerie.setAnimalCourant((Animal) v.getTag());
+            animalerie.setAnimalCourant((AnimalListResponse) v.getTag());
             Intent intentVoirAnimalCourant = new Intent(this.getApplicationContext(), ItemDetailActivity.class);
             startActivity(intentVoirAnimalCourant);
         }

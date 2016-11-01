@@ -2,6 +2,8 @@ package org.fieldenbriggs.response;
 
 import org.joda.time.LocalDate;
 
+import java.util.Date;
+
 /**
  * Created by Geoffrey on 10/28/2016.
  */
@@ -11,7 +13,7 @@ public class AnimalDetailResponse {
    private String nom;
    private String type;
    private String race;
-   private LocalDate dateDeNaissance;
+   private Date dateDeNaissance;
     public String getNom() {
         return nom;
     }
@@ -24,14 +26,14 @@ public class AnimalDetailResponse {
         return race;
     }
 
-    public LocalDate getDateDeNaissance() {
+    public Date getDateDeNaissance() {
         return dateDeNaissance;
     }
 
 
     
     
-    public AnimalDetailResponse(String pNom, String pType, String pRace, LocalDate pDateDeNaissance)
+    public AnimalDetailResponse(String pNom, String pType, String pRace, Date pDateDeNaissance)
     {
         this.nom = pNom;
         this.type = pType;

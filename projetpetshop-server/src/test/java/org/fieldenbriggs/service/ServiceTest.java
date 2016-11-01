@@ -16,6 +16,9 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -229,7 +232,11 @@ public class ServiceTest {
         Assert.assertEquals(response.getNom(),"Fluffy");
         Assert.assertEquals(response.getType(),"Chat");
         Assert.assertEquals(response.getRace(),"Abyssin");
-        Assert.assertEquals(response.getDateDeNaissance(),new LocalDate(2016,4,5));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.MONTH, Calendar.APRIL);
+        cal.set(Calendar.DAY_OF_MONTH, 5);
+        Assert.assertEquals(response.getDateDeNaissance(),cal.getTime());
 
     }
     //==============================================================================================================================================================================
@@ -253,7 +260,12 @@ public class ServiceTest {
     public void addAnimalSuccess()
     {
         // On construit une requête d'ajout d'animal
-        AddAnimalRequest request = new AddAnimalRequest(1,"karka","Chat","Bengal",new LocalDate(2016,5,12));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2015);
+        cal.set(Calendar.MONTH, Calendar.JANUARY);
+        cal.set(Calendar.DAY_OF_MONTH, 16);
+
+        AddAnimalRequest request = new AddAnimalRequest(1,"karka","Chat","Bengal",cal.getTime());
         // On flush le data pour être sur de pouvoir refaire se test à répétition
         webService.flush();
         // On apelle la requete

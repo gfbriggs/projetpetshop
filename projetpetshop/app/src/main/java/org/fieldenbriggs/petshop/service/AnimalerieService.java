@@ -23,9 +23,8 @@ public class AnimalerieService  {
 
     private static AnimalerieService instance;
     private UtilisateurLogResponse utilisateurCourant;
-    private Animal animalCourant;
+    private AnimalListResponse animalCourant;
     private List<AnimalListResponse> lstAnimaux;
-    private List<Utilisateur> lstUtilisteurs;
     private IWebService server;
 
     public static AnimalerieService getInstance() {
@@ -52,7 +51,7 @@ public class AnimalerieService  {
     Propriétés
     ==================================================================================================================================================================== */
 
-    public Animal getAnimalCourant() {
+    public AnimalListResponse getAnimalCourant() {
         return animalCourant;
     }
 
@@ -60,7 +59,7 @@ public class AnimalerieService  {
         return lstAnimaux;
     }
 
-    public void setAnimalCourant(Animal animalCourant) {
+    public void setAnimalCourant(AnimalListResponse animalCourant) {
         this.animalCourant = animalCourant;
     }
 

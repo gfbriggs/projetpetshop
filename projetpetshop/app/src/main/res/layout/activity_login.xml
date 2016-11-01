@@ -35,9 +35,7 @@
         android:id="@+id/btnLog"
         android:layout_marginBottom="47dp"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/txtEmail"
         android:layout_toStartOf="@+id/txtEmail"
-        android:layout_marginRight="28dp"
         android:layout_marginEnd="28dp" />
 
     <TextView
@@ -65,6 +63,5 @@
         android:text="Nouveau compte"
         android:id="@+id/btnNew"
         android:layout_alignBottom="@+id/btnLog"
-        android:layout_toRightOf="@+id/txtEmail"
         android:layout_toEndOf="@+id/txtEmail" />
 </RelativeLayout>

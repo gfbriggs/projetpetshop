@@ -35,14 +35,14 @@ public class Animal {
         return nom;
     }
 
-    public LocalDate getDateNaissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
     private String nom;
-    private LocalDate dateNaissance;
+    private Date dateNaissance;
 
-    public Animal(long pId, long pUserId, String pType, String pRace, String pNom , LocalDate pDatenaissance)
+    public Animal(long pId, long pUserId, String pType, String pRace, String pNom , Date pDatenaissance)
     {
         this.id = pId;
         this.utilisateurId = pUserId;

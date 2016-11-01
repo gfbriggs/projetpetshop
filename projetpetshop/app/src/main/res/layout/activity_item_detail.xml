@@ -35,12 +35,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/inputNomAnimal"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginLeft="150dp"
+                    android:textAlignment="center"
                     android:text="Nom input"
                     />
                 </LinearLayout>
@@ -110,7 +109,64 @@
         android:text="Type input"
         />
         </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/raceanimal"
+             android:text="Race"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_gravity="bottom"
+             android:layout_marginLeft="160dp"
+             android:layout_marginStart="160dp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/inputRace"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="10dp"
+            android:text="Type race"
+            />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/proprietaire"
+            android:text="Proprietaire"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="140dp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/inputUsername"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="10dp"
+            android:text="Nom proprietaire"
+            />
+    </LinearLayout>
     </LinearLayout>
 
 

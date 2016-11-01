@@ -1,6 +1,7 @@
 package org.fieldenbriggs.model;
 import org.joda.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -51,12 +52,31 @@ public class Data {
      getLstUtilisateurs().add(user1);
      user1 = new Utilisateur(3,"test3@gmail.com","admin3","admin3");
      getLstUtilisateurs().add(user1);
-     getLstAnimaux().add(new Animal(1,1,"Chat","Abyssin","Fluffy", new LocalDate(2016,4,5)));
-     getLstAnimaux().add(new Animal(2,1,"Chien","Colley","Sparky",new LocalDate(2013,4,10)));
-     getLstAnimaux().add(new Animal(3,2,"Chat","Espagnol","Meow",new LocalDate(2015,4,6)));
-     getLstAnimaux().add(new Animal(4,2,"Chat","Bengal","sirLancelot",new LocalDate(2014,3,5)));
-     getLstAnimaux().add(new Animal(5,3,"Chien","Bulldog","Popotte",new LocalDate(2016,6,13)));
-     getLstAnimaux().add(new Animal(6,3,"Chien","Teckel","saussice",new LocalDate(2016,6,13)));
+     Calendar cal = Calendar.getInstance();
+     cal.set(Calendar.YEAR, 2016);
+     cal.set(Calendar.MONTH, Calendar.APRIL);
+     cal.set(Calendar.DAY_OF_MONTH, 5);
+     getLstAnimaux().add(new Animal(1,1,"Chat","Abyssin","Fluffy", cal.getTime()));
+     cal.set(Calendar.YEAR, 2013);
+     cal.set(Calendar.MONTH, Calendar.APRIL);
+     cal.set(Calendar.DAY_OF_MONTH, 10);
+     getLstAnimaux().add(new Animal(2,1,"Chien","Colley","Sparky",cal.getTime()));
+     cal.set(Calendar.YEAR, 2015);
+     cal.set(Calendar.MONTH, Calendar.APRIL);
+     cal.set(Calendar.DAY_OF_MONTH, 6);
+     getLstAnimaux().add(new Animal(3,2,"Chat","Espagnol","Meow", cal.getTime()));
+     cal.set(Calendar.YEAR, 2014);
+     cal.set(Calendar.MONTH, Calendar.MARCH);
+     cal.set(Calendar.DAY_OF_MONTH, 5);
+     getLstAnimaux().add(new Animal(4,2,"Chat","Bengal","sirLancelot",cal.getTime()));
+     cal.set(Calendar.YEAR, 2016);
+     cal.set(Calendar.MONTH, Calendar.JUNE);
+     cal.set(Calendar.DAY_OF_MONTH, 13);
+     getLstAnimaux().add(new Animal(5,3,"Chien","Bulldog","Popotte",cal.getTime()));
+     cal.set(Calendar.YEAR, 2016);
+     cal.set(Calendar.MONTH, Calendar.JUNE);
+     cal.set(Calendar.DAY_OF_MONTH, 15);
+     getLstAnimaux().add(new Animal(6,3,"Chien","Teckel","saussice", cal.getTime()));
 
 
  }

@@ -2,6 +2,7 @@ package org.fieldenbriggs.petshop.interfaceanimalerie;
 
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
+import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 
@@ -30,4 +31,8 @@ public interface IWebService {
     //signup
     @POST("api/adduser/")
     Call<UtilisateurLogResponse> adduser(@Body AddUtilisateurRequest userRequest);
+
+    @GET("api/getanimaldetail/{id}")
+    Call<AnimalDetailResponse> getAnimalDetail (@Path("id")long id);
+
 }
