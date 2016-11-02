@@ -1,5 +1,4 @@
 package org.fieldenbriggs.model;
-import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

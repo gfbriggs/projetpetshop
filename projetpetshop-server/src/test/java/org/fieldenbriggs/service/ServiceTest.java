@@ -12,13 +12,10 @@ import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
