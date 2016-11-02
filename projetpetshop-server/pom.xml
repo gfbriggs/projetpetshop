@@ -60,7 +60,7 @@
         <version>2.0</version>
         <configuration>
           <path>/</path>
-          <port>7022</port>
+          <port>8080</port>
         </configuration>
       </plugin>
     </plugins>

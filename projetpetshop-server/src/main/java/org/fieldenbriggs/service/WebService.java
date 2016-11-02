@@ -15,6 +15,7 @@ import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
+import org.joda.time.DateTime;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
@@ -22,6 +23,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -130,6 +134,7 @@ public class WebService {
             throw new AnimalNonDisponibleException();
 
         // On contruit la liste d'evenements
+
         List<GetEvenementResponse> lstevenement = new ArrayList<GetEvenementResponse>();
         for (Evenement event: data.getLstEvenements()
              ) {
@@ -171,7 +176,7 @@ public class WebService {
     //==============================================================================================================================================================================
     @POST
     @Path("addanimal")
-    public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest)
+    public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest) throws Exception
     {
         // Il y a moins de validation à faire sur un animal que sur un utilisateur
         // Un utilisateur peux avoir 2 animaux du même nom

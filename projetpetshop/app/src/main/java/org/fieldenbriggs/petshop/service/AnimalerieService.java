@@ -31,7 +31,8 @@ public class AnimalerieService  {
     public AnimalerieService()
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://5a5.di.college-em.info:7022/")
+                //http://5a5.di.college-em.info:7022/
+                .baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

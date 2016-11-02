@@ -6,6 +6,7 @@ import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
+import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 import org.junit.Assert;
 import org.junit.Before;
@@ -127,7 +128,9 @@ public class ServiceTest {
     @Test
     public void callGetEvents() throws Exception
     {
-        
+        List<GetEvenementResponse>  responses = service.getEvenements(1).execute().body();
+        Assert.assertEquals(responses.size(),2);
+
     }
 
 }

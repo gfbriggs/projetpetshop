@@ -1,12 +1,20 @@
 package org.fieldenbriggs.petshop.activite;
 
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.fieldenbriggs.petshop.R;
+import org.fieldenbriggs.petshop.adapteur.AnimalAdapter;
+import org.fieldenbriggs.petshop.adapteur.EvenementAdapter;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
 import org.fieldenbriggs.response.AnimalDetailResponse;
+import org.fieldenbriggs.response.GetEvenementResponse;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,6 +26,7 @@ public class ItemDetailActivity extends DrawerActivity {
     TextView txtInputType;
     TextView txtInputRace;
     TextView txtUtilisateur;
+    ListView lstEvenements;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_item_detail);
@@ -29,6 +38,7 @@ public class ItemDetailActivity extends DrawerActivity {
          txtInputType = (TextView)findViewById(R.id.inputTypeAnimal);
          txtInputRace = (TextView) findViewById(R.id.inputRace);
          txtUtilisateur = (TextView) findViewById(R.id.inputUsername);
+         lstEvenements = (ListView) findViewById(R.id.lstEvenements);
         
         // On va chercher l'animal courant avec l'item de list choisi.
 
@@ -56,7 +66,28 @@ public class ItemDetailActivity extends DrawerActivity {
                 Toast.makeText(ItemDetailActivity.this, "La connection au serveur à échouée!", Toast.LENGTH_SHORT).show();
             }
         });
-        // On associe les champs
+
+        // On va en même temps chercher la liste des evenements
+        animalerie.getServer().getEvenements(animalerie.getAnimalCourant().getId()).enqueue(new Callback<List<GetEvenementResponse>>() {
+            @Override
+            public void onResponse(Call<List<GetEvenementResponse>> call, Response<List<GetEvenementResponse>> response) {
+             if(response.isSuccessful())
+             {
+
+                 EvenementAdapter adapteur = new EvenementAdapter(ItemDetailActivity.this, response.body());
+                 lstEvenements.setAdapter(adapteur);
+             }
+             else
+             {
+                 Toast.makeText(ItemDetailActivity.this, "La liste d'evenement ne peut être chargée!", Toast.LENGTH_SHORT).show();
+             }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetEvenementResponse>> call, Throwable t) {
+                Toast.makeText(ItemDetailActivity.this, "La connection au server à échouée!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 

@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import org.fieldenbriggs.petshop.R;
-import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.response.AnimalListResponse;
 
 import java.util.List;

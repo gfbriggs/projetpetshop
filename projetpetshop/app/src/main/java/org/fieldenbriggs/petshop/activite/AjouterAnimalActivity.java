@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -12,6 +13,9 @@ import org.fieldenbriggs.petshop.service.AnimalerieService;
 import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.joda.time.LocalDate;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +30,7 @@ public class AjouterAnimalActivity extends DrawerActivity {
     EditText txtNomAnimal;
     EditText txtDateAnimal;
     EditText txtRaceAnimal;
+    DatePicker datePickerAnimal;
     Button addPet;
     Button cancel;
     @Override
@@ -35,7 +40,7 @@ public class AjouterAnimalActivity extends DrawerActivity {
         // les elements
         txtTypeAnimal = (EditText) findViewById(R.id.editTypeAnimal);
         txtNomAnimal = (EditText) findViewById(R.id.editNomAnimal);
-        txtDateAnimal = (EditText) findViewById(R.id.editDateAnimal);
+        datePickerAnimal = (DatePicker) findViewById(R.id.editDateAnimal);
         txtRaceAnimal = (EditText) findViewById(R.id.editRace);
         //Boutons
         addPet = (Button)findViewById(R.id.btnAddPet);
@@ -46,15 +51,16 @@ public class AjouterAnimalActivity extends DrawerActivity {
         addPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtTypeAnimal.getText().toString().equals("") ||txtNomAnimal.getText().toString().equals("") || txtTypeAnimal.getText().toString().equals("") || txtDateAnimal.getText().toString().equals(""))
+                if(txtTypeAnimal.getText().toString().equals("") ||txtNomAnimal.getText().toString().equals("") || txtTypeAnimal.getText().toString().equals("") )
                 {
                     Toast.makeText(AjouterAnimalActivity.this, "Les champs ne doivent pas être vide!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
+                    Calendar calendar = new GregorianCalendar(datePickerAnimal.getYear(),datePickerAnimal.getMonth(),datePickerAnimal.getDayOfMonth());
                     animalerie.getServer().addAnimal(new AddAnimalRequest(animalerie.getUtilisateurCourant().getId(),
                             txtNomAnimal.getText().toString(),txtTypeAnimal.getText().toString(),txtRaceAnimal.getText().toString(),
-                            LocalDate.parse(txtDateAnimal.getText().toString()).toDate())).enqueue(new Callback<AnimalListResponse>() {
+                            calendar.getTime())).enqueue(new Callback<AnimalListResponse>() {
                         @Override
                         public void onResponse(Call<AnimalListResponse> call, Response<AnimalListResponse> response) {
                             if(response.isSuccessful())
