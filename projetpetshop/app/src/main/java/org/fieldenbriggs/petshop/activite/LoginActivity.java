@@ -3,7 +3,6 @@ package org.fieldenbriggs.petshop.activite;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,21 +10,13 @@ import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
-import org.fieldenbriggs.petshop.model.Utilisateur;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
-import org.fieldenbriggs.petshop.mock.RetrofitUtil;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-
-import java.io.Console;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(LoginActivity.this, "Authentification Echouée! : " + response.errorBody(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentification Echouée! : " + response.message(), Toast.LENGTH_SHORT).show();
                         }
 
                     }

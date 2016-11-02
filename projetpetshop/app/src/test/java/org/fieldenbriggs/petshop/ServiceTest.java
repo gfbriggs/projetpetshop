@@ -1,7 +1,5 @@
 package org.fieldenbriggs.petshop;
 
-import android.support.v4.media.MediaMetadataCompat;
-
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
 import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
@@ -9,21 +7,14 @@ import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-
 import java.util.Calendar;
 import java.util.List;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-import static org.junit.Assert.*;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.

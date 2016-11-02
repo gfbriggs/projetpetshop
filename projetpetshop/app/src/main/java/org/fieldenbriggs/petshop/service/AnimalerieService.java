@@ -1,16 +1,10 @@
 package org.fieldenbriggs.petshop.service;
 
-
-import org.fieldenbriggs.petshop.interfaceanimalerie.IDataService;
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
-import org.fieldenbriggs.petshop.model.Animal;
-import org.fieldenbriggs.petshop.model.Utilisateur;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -37,7 +31,7 @@ public class AnimalerieService  {
     public AnimalerieService()
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/")
+                .baseUrl("http://5a5.di.college-em.info:7022/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

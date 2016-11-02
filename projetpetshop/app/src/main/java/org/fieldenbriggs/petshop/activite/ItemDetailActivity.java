@@ -1,22 +1,12 @@
 package org.fieldenbriggs.petshop.activite;
 
 import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.fieldenbriggs.petshop.R;
-import org.fieldenbriggs.petshop.adapteur.EvenementAdapter;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
 import org.fieldenbriggs.response.AnimalDetailResponse;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

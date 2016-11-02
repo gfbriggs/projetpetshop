@@ -8,14 +8,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
-import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
-import org.fieldenbriggs.petshop.mock.RetrofitUtil;
 import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.joda.time.LocalDate;
-
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;

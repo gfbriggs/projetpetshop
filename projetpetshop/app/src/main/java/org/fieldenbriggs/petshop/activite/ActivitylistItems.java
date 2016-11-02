@@ -2,7 +2,6 @@ package org.fieldenbriggs.petshop.activite;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
 import android.view.View;
@@ -11,9 +10,7 @@ import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.adapteur.AnimalAdapter;
-import org.fieldenbriggs.petshop.model.Animal;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
-import org.fieldenbriggs.petshop.mock.RetrofitUtil;
 import org.fieldenbriggs.response.AnimalListResponse;
 
 import java.util.List;

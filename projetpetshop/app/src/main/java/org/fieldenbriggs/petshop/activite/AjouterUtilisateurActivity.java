@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
-import org.fieldenbriggs.petshop.model.Utilisateur;
-import org.fieldenbriggs.petshop.mock.RetrofitUtil;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
