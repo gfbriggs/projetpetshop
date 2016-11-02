@@ -120,4 +120,14 @@ public class ServiceTest {
         Assert.assertEquals(animalListResponse.getType(),request.getType());
     }
 
+    /**
+     * Ce test va nous permettre de voir si on peut aller chercher les bons evenements côté client.
+     * @throws Exception
+     */
+    @Test
+    public void callGetEvents() throws Exception
+    {
+        
+    }
+
 }

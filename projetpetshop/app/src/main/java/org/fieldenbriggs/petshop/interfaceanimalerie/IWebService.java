@@ -5,6 +5,7 @@ import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
+import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 
 import java.util.List;
@@ -38,5 +39,9 @@ public interface IWebService {
 
     @POST("api/addanimal")
     Call<AnimalListResponse> addAnimal (@Body AddAnimalRequest addAnimalRequest);
+
+    @GET("api/getevents/{id}")
+    Call<List<GetEvenementResponse>> getEvenements (@Path("id")long id);
+
 
 }
