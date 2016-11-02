@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:28:28 -0400] "GET /getevents/1 HTTP/1.1" 404 973 http-bio-7022-exec-1 38
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:28:28 -0400] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-7022-exec-3 1
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:28:47 -0400] "GET /api/getevents/1 HTTP/1.1" 400 20 http-bio-7022-exec-4 754
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:29:37 -0400] "GET /api/getevents/1 HTTP/1.1" 400 20 http-bio-7022-exec-1 770
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:29:38 -0400] "GET /api/getevents/1 HTTP/1.1" 400 20 http-bio-7022-exec-2 4
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:30:20 -0400] "GET /api/getevents/1 HTTP/1.1" 200 149 http-bio-7022-exec-1 841
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:30:41 -0400] "GET /api/getevents/9 HTTP/1.1" 400 28 http-bio-7022-exec-2 5
+0:0:0:0:0:0:0:1 - - [02/Nov/2016:11:30:43 -0400] "GET /api/getevents/1 HTTP/1.1" 200 149 http-bio-7022-exec-3 3

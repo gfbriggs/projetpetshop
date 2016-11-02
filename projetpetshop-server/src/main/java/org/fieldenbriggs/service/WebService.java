@@ -6,13 +6,16 @@ import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
 import org.fieldenbriggs.model.Animal;
 import org.fieldenbriggs.model.Data;
+import org.fieldenbriggs.model.Evenement;
 import org.fieldenbriggs.model.Utilisateur;
 import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
+import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 import javax.ws.rs.GET;
@@ -20,6 +23,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -108,6 +112,34 @@ public class WebService {
         // On revoie la liste qu'on a crée au préalable avec la méthode.
 
         return createAnimalListFromID(id);
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Méthode qui retourne les evenements d'un animals a partir du id d'un animal
+     * @param id le id de l'animal
+     * @return la liste des evenements
+     */
+    //==============================================================================================================================================================================
+    @GET @Path("getevents/{id}")
+    public List<GetEvenementResponse> getEvents(@PathParam("id") long id) throws AnimalNonDisponibleException
+    {
+        // Il faut instancier le data
+        data = Data.getInstance();
+        // On va verifier si l'animal exitste <-- oui oui
+        if(!animalExists(id))
+            throw new AnimalNonDisponibleException();
+
+        // On contruit la liste d'evenements
+        List<GetEvenementResponse> lstevenement = new ArrayList<GetEvenementResponse>();
+        for (Evenement event: data.getLstEvenements()
+             ) {
+            if(event.getAnimalId() == id)
+            {
+                lstevenement.add(new GetEvenementResponse(event.getTypeEvenement(),event.getDateEvenement()));
+            }
+        }
+        // On renvoit la liste
+        return lstevenement;
     }
     //==============================================================================================================================================================================
     /**
@@ -276,6 +308,25 @@ public class WebService {
 
         }
         return lstAnimaux;
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Méthode qui cherche un animal et qui voit si un animal existe
+     * @param animalID
+     * @return
+     */
+    //==============================================================================================================================================================================
+    private boolean animalExists(long animalID)
+    {
+
+        for (Animal animal:data.getLstAnimaux()
+             ) {
+            if(animal.getId() == animalID)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -11,6 +11,7 @@ import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
+import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,6 +29,7 @@ public class ServiceTest {
     public void initialise()
     {
         webService = new WebService();
+
     }
     //==============================================================================================================================================================================
     /**
@@ -204,6 +206,8 @@ public class ServiceTest {
     @Test
     public void getAnimaux()
     {
+        // On flush pour que le jeux de données soit exact
+        webService.flush();
 
         // On va tester la liste du premier utilisateur avec les paramêtres pour être sur qu'il va
         // Chercher les bonnes entrés
@@ -233,7 +237,7 @@ public class ServiceTest {
         cal.set(Calendar.YEAR, 2016);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 5);
-        Assert.assertEquals(response.getDateDeNaissance(),cal.getTime());
+        Assert.assertEquals(response.getDateDeNaissance().getDate(),cal.getTime().getDate());
 
     }
     //==============================================================================================================================================================================
@@ -256,6 +260,8 @@ public class ServiceTest {
     @Test
     public void addAnimalSuccess()
     {
+        // On flush le data au cas ou
+        webService.flush();
         // On construit une requête d'ajout d'animal
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 2015);
@@ -277,9 +283,31 @@ public class ServiceTest {
         // On regarde si l'entrée est dans la liste
 
         Assert.assertEquals(Data.getInstance().getLstAnimaux().get(6).getId(),7);
-
     }
 
+    /**
+     * Test si la liste d'evenements retourné est la bonne
+     */
+    @Test
+    public void getEventsBon() throws AnimalNonDisponibleException
+    {
+        // On flush pour que le test fonctionne
+        webService.flush();
+        // On va chercher une liste
+        List<GetEvenementResponse> lstevenement = webService.getEvents(1);
+        // Sa grossseur devrait être 2
+        Assert.assertEquals(lstevenement.size(),2);
+        // Le premier element devrait être bon
+        Assert.assertEquals(lstevenement.get(0).getTypeEvenement(),"Vaccin Rage");
+    }
 
-
+    /**
+     * Test si quand on cherche une liste d'evenements avec un id animal invalide l'exception est lancée
+     * @throws AnimalNonDisponibleException
+     */
+    @Test (expected = AnimalNonDisponibleException.class)
+    public void getEventsMauvais() throws AnimalNonDisponibleException
+    {
+        webService.getEvents(0);
+    }
 }
