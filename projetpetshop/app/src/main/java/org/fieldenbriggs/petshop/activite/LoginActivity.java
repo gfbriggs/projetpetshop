@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(LoginActivity.this, "Authentification Echouée!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentification Echouée! : " + response.errorBody(), Toast.LENGTH_SHORT).show();
                         }
 
                     }

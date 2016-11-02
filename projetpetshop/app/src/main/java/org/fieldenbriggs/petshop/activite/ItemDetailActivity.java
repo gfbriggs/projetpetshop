@@ -57,7 +57,7 @@ public class ItemDetailActivity extends DrawerActivity {
                 }
                 else
                 {
-                    Toast.makeText(ItemDetailActivity.this, "L'animal choisi n'est pas disponible!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ItemDetailActivity.this, "L'animal choisi n'est pas disponible! : " + response.body(), Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -3,6 +3,7 @@ package org.fieldenbriggs.petshop;
 import android.support.v4.media.MediaMetadataCompat;
 
 import org.fieldenbriggs.petshop.interfaceanimalerie.IWebService;
+import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
 import org.fieldenbriggs.response.AnimalDetailResponse;
@@ -110,6 +111,22 @@ public class ServiceTest {
         Assert.assertEquals(response.getDateDeNaissance().getDate(),cal.getTime().getDate());
 
 
+    }
+
+    @Test
+    public void callAddAnimal() throws Exception
+    {
+        // On va construire un packet à envoyer pour le add avant tout
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR,2016);
+        cal.set(Calendar.MONTH,Calendar.JUNE);
+        cal.set(Calendar.DAY_OF_MONTH,20);
+        AddAnimalRequest request = new AddAnimalRequest(1,"Hero","Hamster","Hamster bleu",cal.getTime());
+
+        AnimalListResponse animalListResponse = service.addAnimal(request).execute().body();
+
+        Assert.assertEquals(animalListResponse.getNom(),request.getNom());
+        Assert.assertEquals(animalListResponse.getType(),request.getType());
     }
 
 }

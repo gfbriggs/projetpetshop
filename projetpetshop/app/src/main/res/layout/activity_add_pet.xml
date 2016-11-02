@@ -69,7 +69,6 @@
         android:text="Cancel"
         android:id="@+id/btnCancel"
         android:layout_alignTop="@+id/btnAddPet"
-        android:layout_alignRight="@+id/editTypeAnimal"
         android:layout_alignEnd="@+id/editTypeAnimal" />
 
     <EditText
@@ -95,9 +94,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editRace"
         android:layout_below="@+id/textView4"
-        android:layout_alignRight="@+id/editDateAnimal"
         android:layout_alignEnd="@+id/editDateAnimal"
-        android:layout_alignLeft="@+id/editDateAnimal"
         android:layout_alignStart="@+id/editDateAnimal" />
 
 </RelativeLayout>
