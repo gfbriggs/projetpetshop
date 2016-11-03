@@ -41,9 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLog);
         btnCompte = (Button) findViewById(R.id.btnNew);
 
-        // Dans la page de log l'utilisateur courant est par default null avant d'être authentifié.
-        animalerie.setUtilisateurCourant(null);
-
         // Listener de connexion
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(LoginActivity.this, "Authentification Echouée! : " + response.message(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentification Echouée! : Authentifiant ou mot de passe invalide!", Toast.LENGTH_SHORT).show();
                         }
 
                     }

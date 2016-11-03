@@ -51,12 +51,7 @@ public class AjouterAnimalActivity extends DrawerActivity {
         addPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtTypeAnimal.getText().toString().equals("") ||txtNomAnimal.getText().toString().equals("") || txtTypeAnimal.getText().toString().equals("") )
-                {
-                    Toast.makeText(AjouterAnimalActivity.this, "Les champs ne doivent pas être vide!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+
                     Calendar calendar = new GregorianCalendar(datePickerAnimal.getYear(),datePickerAnimal.getMonth(),datePickerAnimal.getDayOfMonth());
                     animalerie.getServer().addAnimal(new AddAnimalRequest(animalerie.getUtilisateurCourant().getId(),
                             txtNomAnimal.getText().toString(),txtTypeAnimal.getText().toString(),txtRaceAnimal.getText().toString(),
@@ -71,7 +66,7 @@ public class AjouterAnimalActivity extends DrawerActivity {
                             }
                             else
                             {
-                                Toast.makeText(AjouterAnimalActivity.this, "L'animal ne peut être ajouté!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AjouterAnimalActivity.this, "Les champs doivent être bien remplit! La date doit être avant aujourd'hui.", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -81,7 +76,6 @@ public class AjouterAnimalActivity extends DrawerActivity {
                         }
                     });
 
-                }
 
             }
         });

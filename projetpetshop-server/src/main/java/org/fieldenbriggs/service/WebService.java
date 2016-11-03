@@ -1,5 +1,6 @@
 package org.fieldenbriggs.service;
 
+
 import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AnimalNonDisponibleException;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
@@ -15,19 +16,16 @@ import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
-import org.joda.time.DateTime;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+
 import java.util.List;
 
 /**
@@ -40,7 +38,7 @@ public class WebService {
     @GET @Path("flush")
     public String flush()
     {
-        data = null;
+        data = new Data();
         return "flush success!";
     }
     private Data data;
@@ -178,6 +176,12 @@ public class WebService {
     @Path("addanimal")
     public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest) throws Exception
     {
+        Calendar cal = Calendar.getInstance();
+
+        if(pAddAnimalRequest.getNom().isEmpty() || pAddAnimalRequest.getRace().isEmpty() || pAddAnimalRequest.getType().isEmpty() || pAddAnimalRequest.getDateDeNaissance().compareTo(cal.getTime()) > 0)
+        {
+            throw new Exception();
+        }
         // Il y a moins de validation à faire sur un animal que sur un utilisateur
         // Un utilisateur peux avoir 2 animaux du même nom
         // On s'assure que le data est instancié
@@ -229,33 +233,6 @@ public class WebService {
 
         for (Utilisateur user: data.getLstUtilisateurs()) {
             if (user.getCourriel().equals(pCourriel))
-            {
-                userRecherche = user;
-            }
-        }
-        if(userRecherche.getId() == 0)
-        {
-            throw new AuthentificationErrorException();
-        }
-        return userRecherche;
-
-    }
-    //==============================================================================================================================================================================
-    /**
-     * Méthode qui permet de trouver un utilisateur par son ID
-     * @param id
-     * @return l'utilisateur
-     * @throws AuthentificationErrorException Advenant que l'utilisateur n'existe pas.
-     */
-    //==============================================================================================================================================================================
-    Utilisateur getUser(long id) throws AuthentificationErrorException
-    {
-        //
-        data = Data.getInstance();
-        Utilisateur userRecherche = new Utilisateur(0,"","","");
-
-        for (Utilisateur user: data.getLstUtilisateurs()) {
-            if (user.getId() == id)
             {
                 userRecherche = user;
             }

@@ -55,7 +55,7 @@ public class AjouterUtilisateurActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(AjouterUtilisateurActivity.this, "L'utilisateur ne peut être ajouté!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AjouterUtilisateurActivity.this, "L'utilisateur ne peut être ajouté! : Vérifier si les champs sont bon!", Toast.LENGTH_SHORT).show();
                         }
                     }
 

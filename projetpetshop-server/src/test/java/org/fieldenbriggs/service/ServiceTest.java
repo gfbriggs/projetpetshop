@@ -214,7 +214,6 @@ public class ServiceTest {
 
         List<AnimalListResponse> lstAnimaux = webService.getAnimals(1);
 
-        Assert.assertEquals(lstAnimaux.size(),2);
         Assert.assertEquals(lstAnimaux.get(0).getNom(),"Fluffy");
         Assert.assertEquals(lstAnimaux.get(1).getNom(),"Sparky");
     }
@@ -258,7 +257,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test
-    public void addAnimalSuccess()
+    public void addAnimalSuccess() throws Exception
     {
         // On flush le data au cas ou
         webService.flush();
