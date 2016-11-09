@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
@@ -18,6 +20,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.lang.Thread.sleep;
+
 public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
@@ -25,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText motDePasse;
     EditText courriel;
     IWebService server;
+    TextView chargement;
+    ProgressBar progress;
     // On va chercher l'animalerie
     AnimalerieService animalerie = AnimalerieService.getInstance();
     @Override
@@ -40,38 +46,59 @@ public class LoginActivity extends AppCompatActivity {
         motDePasse = (EditText) findViewById(R.id.inPass);
         btnLogin = (Button) findViewById(R.id.btnLog);
         btnCompte = (Button) findViewById(R.id.btnNew);
-
+        chargement = (TextView) findViewById(R.id.prgChargement);
+        progress = (ProgressBar) findViewById(R.id.progress);
+        // Reset de la barre de chargement au cas ou...
         // Listener de connexion
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                 // On commence par contruire la requête
-                UtilisateurLogRequest ur = new UtilisateurLogRequest(courriel.getText().toString(), motDePasse.getText().toString());
+                 // On affiche le chargement en cours
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progress.setVisibility(View.VISIBLE);
+                                chargement.setVisibility(View.VISIBLE);
+                            }
+                        });
 
                 // On fait la requête
-                server.signin(ur).enqueue(new Callback<UtilisateurLogResponse>() {
+                Thread t = new Thread(new Runnable() {
                     @Override
-                    public void onResponse(Call<UtilisateurLogResponse> call, Response<UtilisateurLogResponse> response) {
-                        if(response.isSuccessful())
-                        {
-                            // Si la requête marche on met l'utilisateur courant et on rentre dans l'application
-                            animalerie.setUtilisateurCourant(response.body());
-                            Intent intentLoging = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intentLoging);
-                        }
-                        else
-                        {
-                            Toast.makeText(LoginActivity.this, "Authentification Echouée! : Authentifiant ou mot de passe invalide!", Toast.LENGTH_SHORT).show();
-                        }
+                    public void run() {
+                        // On commence par contruire la requête
+                        UtilisateurLogRequest ur = new UtilisateurLogRequest(courriel.getText().toString(), motDePasse.getText().toString());
+                        server.signin(ur).enqueue(new Callback<UtilisateurLogResponse>() {
+                            @Override
+                            public void onResponse(Call<UtilisateurLogResponse> call, Response<UtilisateurLogResponse> response) {
 
-                    }
-                    @Override
-                    public void onFailure(Call<UtilisateurLogResponse> call, Throwable t) {
-                        t.printStackTrace();
-                        Toast.makeText(LoginActivity.this, "Aucune connexion au serveur!", Toast.LENGTH_SHORT).show();
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if(response.isSuccessful())
+                                {
+                                    // Si la requête marche on met l'utilisateur courant et on rentre dans l'application
+                                    animalerie.setUtilisateurCourant(response.body());
+                                    Intent intentLoging = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intentLoging);
+                                }
+                                else
+                                {
+                                    Toast.makeText(LoginActivity.this, "Authentification Echouée! : Authentifiant ou mot de passe invalide!", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                            @Override
+                            public void onFailure(Call<UtilisateurLogResponse> call, Throwable t) {
+                                t.printStackTrace();
+                                Toast.makeText(LoginActivity.this, "Aucune connexion au serveur!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
+                t.start();
 
             }
         });

@@ -37,7 +37,21 @@
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/txtEmail"
         android:layout_marginEnd="28dp" />
-
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:id="@+id/progress"
+        android:visibility="gone"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chargement..."
+        android:id="@+id/prgChargement"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:visibility="gone"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
