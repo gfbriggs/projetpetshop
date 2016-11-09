@@ -99,20 +99,53 @@
         android:orientation="horizontal"
         android:layout_weight="2"
         >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ajouter"
-            android:id="@+id/buttonAjouterUtilisateur"
-            android:layout_marginTop="39dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Retour"
-            android:id="@+id/buttonAnnulerAjoutUtilisateur"
-            android:layout_marginTop="39dp"
-            android:layout_marginLeft="175dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ajouter"
+                android:id="@+id/buttonAjouterUtilisateur" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:visibility="invisible"
+                android:id="@+id/chargementUser"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Ajout en cours"
+                android:id="@+id/chargementTxt"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retour"
+                android:id="@+id/buttonAnnulerAjoutUtilisateur" />
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
 

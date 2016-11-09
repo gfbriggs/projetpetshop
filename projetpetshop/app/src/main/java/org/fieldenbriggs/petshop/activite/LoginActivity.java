@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     IWebService server;
     TextView chargement;
     ProgressBar progress;
+    Boolean isLoading;
     // On va chercher l'animalerie
     AnimalerieService animalerie = AnimalerieService.getInstance();
     @Override
@@ -48,12 +49,14 @@ public class LoginActivity extends AppCompatActivity {
         btnCompte = (Button) findViewById(R.id.btnNew);
         chargement = (TextView) findViewById(R.id.prgChargement);
         progress = (ProgressBar) findViewById(R.id.progress);
+        isLoading = false;
         // Reset de la barre de chargement au cas ou...
         // Listener de connexion
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 // On affiche le chargement en cours
+
+                        // On affiche le chargement en cours
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -61,48 +64,62 @@ public class LoginActivity extends AppCompatActivity {
                                 chargement.setVisibility(View.VISIBLE);
                             }
                         });
-
-                // On fait la requête
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+                        if(!isLoading)
+                        {
+                            isLoading = true;
                         // On commence par contruire la requête
                         UtilisateurLogRequest ur = new UtilisateurLogRequest(courriel.getText().toString(), motDePasse.getText().toString());
                         server.signin(ur).enqueue(new Callback<UtilisateurLogResponse>() {
                             @Override
                             public void onResponse(Call<UtilisateurLogResponse> call, Response<UtilisateurLogResponse> response) {
 
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
                                 if(response.isSuccessful())
                                 {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progress.setVisibility(View.INVISIBLE);
+                                            chargement.setVisibility(View.INVISIBLE);
+                                        }
+                                    });
                                     // Si la requête marche on met l'utilisateur courant et on rentre dans l'application
                                     animalerie.setUtilisateurCourant(response.body());
+                                    isLoading = false;
                                     Intent intentLoging = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intentLoging);
                                 }
                                 else
                                 {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progress.setVisibility(View.INVISIBLE);
+                                            chargement.setVisibility(View.INVISIBLE);
+                                        }
+                                    });
+                                    isLoading = false;
                                     Toast.makeText(LoginActivity.this, "Authentification Echouée! : Authentifiant ou mot de passe invalide!", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
                             @Override
                             public void onFailure(Call<UtilisateurLogResponse> call, Throwable t) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        progress.setVisibility(View.INVISIBLE);
+                                        chargement.setVisibility(View.INVISIBLE);
+                                    }
+                                });
                                 t.printStackTrace();
+                                isLoading = false;
                                 Toast.makeText(LoginActivity.this, "Aucune connexion au serveur!", Toast.LENGTH_SHORT).show();
                             }
                         });
-                    }
-                });
-                t.start();
+                        }
 
             }
         });
-
         // Listener de creation de compte
         btnCompte.setOnClickListener(new View.OnClickListener() {
             @Override

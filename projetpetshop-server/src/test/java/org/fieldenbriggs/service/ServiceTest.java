@@ -128,7 +128,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test
-    public void authentifierUtilisateurBon() throws  AuthentificationErrorException
+    public void authentifierUtilisateurBon() throws  AuthentificationErrorException,InterruptedException
     {
         // On va construire un package request
 
@@ -156,7 +156,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test(expected = AuthentificationErrorException.class)
-    public void authentifierUserMauvais() throws  AuthentificationErrorException
+    public void authentifierUserMauvais() throws  AuthentificationErrorException, InterruptedException
     {
         UtilisateurLogRequest ur = new UtilisateurLogRequest("merde@gmail.com","admin");
         UtilisateurLogResponse ures = webService.authentifierUtilisateur(ur);
@@ -179,8 +179,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test
-    public void ajoutUtilisateurBon() throws ErrorAjoutUtilisateurException, AuthentificationErrorException
-    {
+    public void ajoutUtilisateurBon() throws ErrorAjoutUtilisateurException, AuthentificationErrorException, InterruptedException {
         // On flush le data d'abord pour être sur que le tout fonctionne
         webService.flush();
         // On va crée un package d'ajout pour ajouter un utilisateur
@@ -204,8 +203,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test
-    public void getAnimaux()
-    {
+    public void getAnimaux() throws InterruptedException {
         // On flush pour que le jeux de données soit exact
         webService.flush();
 
@@ -223,8 +221,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test
-    public  void getAnimalDetailBon() throws AnimalNonDisponibleException
-    {
+    public  void getAnimalDetailBon() throws AnimalNonDisponibleException, InterruptedException {
         // On récupère l'obje à l'aide de l'appel
         AnimalDetailResponse response = webService.getAnimalDetail(1);
 
@@ -246,8 +243,7 @@ public class ServiceTest {
      */
     //==============================================================================================================================================================================
     @Test(expected = AnimalNonDisponibleException.class)
-    public void  getAnimalDetailMauvais() throws AnimalNonDisponibleException
-    {
+    public void  getAnimalDetailMauvais() throws AnimalNonDisponibleException, InterruptedException {
         // On récupère l'objet à l'aide de l'appel avec un id qui n'éxiste pas et il devrait nous lancer l'exception
         AnimalDetailResponse response = webService.getAnimalDetail(0);
     }
@@ -288,8 +284,7 @@ public class ServiceTest {
      * Test si la liste d'evenements retourné est la bonne
      */
     @Test
-    public void getEventsBon() throws AnimalNonDisponibleException
-    {
+    public void getEventsBon() throws AnimalNonDisponibleException, InterruptedException {
         // On flush pour que le test fonctionne
         webService.flush();
         // On va chercher une liste
@@ -305,8 +300,7 @@ public class ServiceTest {
      * @throws AnimalNonDisponibleException
      */
     @Test (expected = AnimalNonDisponibleException.class)
-    public void getEventsMauvais() throws AnimalNonDisponibleException
-    {
+    public void getEventsMauvais() throws AnimalNonDisponibleException, InterruptedException {
         webService.getEvents(0);
     }
 }

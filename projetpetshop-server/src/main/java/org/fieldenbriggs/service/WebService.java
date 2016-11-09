@@ -55,8 +55,8 @@ public class WebService {
     //==============================================================================================================================================================================
     @POST
     @Path("signin")
-    public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest) throws  AuthentificationErrorException
-    {
+    public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest) throws AuthentificationErrorException, InterruptedException {
+        Thread.sleep(2000);
         System.out.println("La requete est passé!");
         // On trouve l'utilisateur et on valide le mot de passe
         Utilisateur utilisateurRechercher = getUser(pUserRequest.getAuthentifiant().toLowerCase());
@@ -76,8 +76,8 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @POST @Path("adduser")
-    public UtilisateurLogResponse ajouterUnUtilisateur(AddUtilisateurRequest pAddUserRequest) throws ErrorAjoutUtilisateurException
-    {
+    public UtilisateurLogResponse ajouterUnUtilisateur(AddUtilisateurRequest pAddUserRequest) throws ErrorAjoutUtilisateurException, InterruptedException {
+        Thread.sleep(2000);
         System.out.println("Rêquete envoyé avec : "+ pAddUserRequest.getNom() +", "+ pAddUserRequest.getCourriel() +", "+ pAddUserRequest.getMotDePasse());
         // Vérifier si il y a déjà un utilisateur avec le même courriel
         verifyUtilisateurExiste(pAddUserRequest.getCourriel());
@@ -108,8 +108,8 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @GET @Path("getanimals/{id}")
-     public List<AnimalListResponse> getAnimals(@PathParam("id") long id)
-    {
+     public List<AnimalListResponse> getAnimals(@PathParam("id") long id) throws InterruptedException {
+        Thread.sleep(2000);
         System.out.println("Requete passée pour les animaux de l'utilisateur n." + id);
         // On revoie la liste qu'on a crée au préalable avec la méthode.
 
@@ -123,8 +123,9 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @GET @Path("getevents/{id}")
-    public List<GetEvenementResponse> getEvents(@PathParam("id") long id) throws AnimalNonDisponibleException
-    {
+    public List<GetEvenementResponse> getEvents(@PathParam("id") long id) throws AnimalNonDisponibleException, InterruptedException {
+        Thread.sleep(2000);
+
         // Il faut instancier le data
         data = Data.getInstance();
         // On va verifier si l'animal exitste <-- oui oui
@@ -152,8 +153,8 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @GET @Path("getanimaldetail/{id}")
-     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id) throws AnimalNonDisponibleException
-    {
+     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id) throws AnimalNonDisponibleException, InterruptedException {
+        Thread.sleep(2000);
         // On s'assure que le data de base est crée et instancié
         data = Data.getInstance();
         // On va chercher un bon animal par son id
@@ -176,6 +177,8 @@ public class WebService {
     @Path("addanimal")
     public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest) throws Exception
     {
+        Thread.sleep(2000);
+
         Calendar cal = Calendar.getInstance();
 
         if(pAddAnimalRequest.getNom().isEmpty() || pAddAnimalRequest.getRace().isEmpty() || pAddAnimalRequest.getType().isEmpty() || pAddAnimalRequest.getDateDeNaissance().compareTo(cal.getTime()) > 0)
