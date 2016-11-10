@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\1354177\Desktop\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.8.0_1d341f9d0c6bdfe943f77f9526d559ae41524edd\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="C:\Users\1354177\Desktop\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.0_fbf266499600a5c7857e4898aef4adb107ec0dbc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\1354177\Desktop\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_fc18a0fdc80391aaf9a93e629f1a6f03cf6a9cf4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\1354177\Desktop\projetpetshop\projetpetshop\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e9f56cc0660d3291f8924642c8b0f8c46df8e95e">
+        <dex dex="C:\Users\1354177\Desktop\projetpetshop\projetpetshop\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_04c302e14cc38d45abde0251081a0cd7c84839d0\classes.dex" />
+    </item>
+
+</items>

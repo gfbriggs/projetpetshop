@@ -36,7 +36,6 @@ public class AddAnimalRequest {
 
 
 
-
     public AddAnimalRequest(long pUserID,String pNom, String pType, String pRace, Date pDateDeNaissance)
     {
         this.userId = pUserID;
