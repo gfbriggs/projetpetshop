@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -302,5 +303,13 @@ public class ServiceTest {
     @Test (expected = AnimalNonDisponibleException.class)
     public void getEventsMauvais() throws AnimalNonDisponibleException, InterruptedException {
         webService.getEvents(0);
+    }
+
+    @Test
+    public void testTime()
+    {
+        Calendar cal = new GregorianCalendar();
+        cal.set(Calendar.DAY_OF_MONTH,Calendar.DAY_OF_MONTH + 1);
+        System.out.println(cal.getTime().toString());
     }
 }

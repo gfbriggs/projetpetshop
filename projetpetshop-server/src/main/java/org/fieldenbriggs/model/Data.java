@@ -25,6 +25,13 @@ public class Data {
     private List<Evenement> lstEvenements;
 
 
+    private List<Token> lsttokens;
+
+    public List<Token> getLsttokens() {
+        return lsttokens;
+    }
+
+
     public List<Animal> getLstAnimeux() {
   return lstAnimaux;
  }
@@ -38,7 +45,7 @@ public class Data {
     }
 
     public List<Utilisateur> getLstUtilisateurs() {
-  return lstUtilisateurs;
+        return lstUtilisateurs;
  }
 
 
@@ -50,6 +57,7 @@ public class Data {
      this.lstUtilisateurs = new ArrayList<Utilisateur>();
      this.lstAnimaux =  new ArrayList<Animal>();
      this.lstEvenements = new ArrayList<Evenement>();
+     this.lsttokens = new ArrayList<Token>();
      Utilisateur user1 =  new Utilisateur(1,"test@gmail.com","admin","admin");
      getLstUtilisateurs().add(user1);
      user1 = new Utilisateur(2,"test2@gmail.com","admin2","admin2");

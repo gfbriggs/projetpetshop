@@ -14,6 +14,9 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -104,6 +107,27 @@ public class AnimalerieService  {
     }
 
 
+
+    public static class MyCookieJar implements CookieJar {
+
+        private List<Cookie> cookies;
+
+        @Override
+        public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+            this.cookies =  cookies;
+        }
+
+        @Override
+        public List<Cookie> loadForRequest(HttpUrl url) {
+            List<Cookie> res = new ArrayList<>();
+            if (cookies != null){
+                for(Cookie c : cookies){
+                    if (c.expiresAt() > System.currentTimeMillis()) res.add(c);
+                }
+            }
+            return res;
+        }
+    }
     public static OkHttpClient getClient(){
         try {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -121,6 +145,10 @@ public class AnimalerieService  {
                         }
                     }
             };
+            // Sets the cookie Jar to automatically handles incoming and outgoing cookies
+            CookieJar cookieJar =
+                    new MyCookieJar();
+            builder = builder.cookieJar(cookieJar);
             // Install the all-trusting trust manager
             final SSLContext sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());

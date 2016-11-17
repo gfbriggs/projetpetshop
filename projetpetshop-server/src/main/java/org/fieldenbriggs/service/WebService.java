@@ -1,14 +1,12 @@
 package org.fieldenbriggs.service;
 
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AnimalNonDisponibleException;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
-import org.fieldenbriggs.model.Animal;
-import org.fieldenbriggs.model.Data;
-import org.fieldenbriggs.model.Evenement;
-import org.fieldenbriggs.model.Utilisateur;
+import org.fieldenbriggs.model.*;
 import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
 import org.fieldenbriggs.request.UtilisateurLogRequest;
@@ -23,10 +21,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import java.util.List;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
+import java.util.*;
 
 /**
  * Created by 1354177 on 2016-10-20.
@@ -42,6 +39,8 @@ public class WebService {
         return "flush success!";
     }
     private Data data;
+
+    public static final String Cookie = "cookieWeb";
      /*
      Méthodes de service
       */
@@ -55,17 +54,27 @@ public class WebService {
     //==============================================================================================================================================================================
     @POST
     @Path("signin")
-    public UtilisateurLogResponse authentifierUtilisateur(UtilisateurLogRequest pUserRequest) throws AuthentificationErrorException, InterruptedException {
+    public Response authentifierUtilisateur(UtilisateurLogRequest pUserRequest) throws AuthentificationErrorException, InterruptedException {
         Thread.sleep(2000);
         System.out.println("La requete est passé!");
         // On trouve l'utilisateur et on valide le mot de passe
         Utilisateur utilisateurRechercher = getUser(pUserRequest.getAuthentifiant().toLowerCase());
         verifyPassword(utilisateurRechercher.getMotDePass(),pUserRequest.getMotDePasse());
-
-
         // Si le tout passe on construit le package de retour
+        // On fait le token
+        // On fait la date d'expiration pour le token, 1 jour.
+        Calendar cal = new GregorianCalendar();
+        cal.set(Calendar.DAY_OF_MONTH,Calendar.DAY_OF_MONTH + 1);
+        System.out.println(cal.getTime().toString());
+        Token token = new Token(UUID.randomUUID().toString(),cal.getTime(),utilisateurRechercher.getId());
+        data.getLsttokens().add(token);
+        // On fait le Cookie
+        NewCookie cookie = new NewCookie(Cookie,token.getId(),"/","","Token ID",804800,true);
         // Et on revoit le package au serveur
-        return new UtilisateurLogResponse(utilisateurRechercher.getId(),utilisateurRechercher.getCourriel(),utilisateurRechercher.getNom());
+
+        UtilisateurLogResponse user = new UtilisateurLogResponse(utilisateurRechercher.getId(), utilisateurRechercher.getCourriel(), utilisateurRechercher.getNom());
+        return  Response.ok(user).cookie(cookie).build();
+
     }
     //==============================================================================================================================================================================
     /**
