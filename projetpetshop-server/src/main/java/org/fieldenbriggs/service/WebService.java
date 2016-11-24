@@ -2,6 +2,7 @@ package org.fieldenbriggs.service;
 
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.org.apache.xpath.internal.operations.String;
 import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AnimalNonDisponibleException;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
@@ -16,11 +17,8 @@ import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
 
 
-
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import java.util.*;
@@ -40,7 +38,7 @@ public class WebService {
     }
     private Data data;
 
-    public static final String Cookie = "cookieWeb";
+    public static final String COOKIE = "cookieWeb";
      /*
      Méthodes de service
       */
@@ -69,12 +67,21 @@ public class WebService {
         Token token = new Token(UUID.randomUUID().toString(),cal.getTime(),utilisateurRechercher.getId());
         data.getLsttokens().add(token);
         // On fait le Cookie
-        NewCookie cookie = new NewCookie(Cookie,token.getId(),"/","","Token ID",804800,true);
+        NewCookie cookie = new NewCookie(COOKIE,token.getId(),"/","","Token ID",804800,true);
         // Et on revoit le package au serveur
 
         UtilisateurLogResponse user = new UtilisateurLogResponse(utilisateurRechercher.getId(), utilisateurRechercher.getCourriel(), utilisateurRechercher.getNom());
         return  Response.ok(user).cookie(cookie).build();
 
+    }
+    @POST
+    @Path("signout")
+    public Response deconnecterUtilisateur(@CookieParam(COOKIE)Cookie cookie)
+    {
+
+        // On fait un nouveau cookie qui expire et un token vide
+        NewCookie newCookie = new NewCookie(COOKIE,null,"/","","Token ID",0,true);
+        return  Response.ok().cookie(newCookie).build();
     }
     //==============================================================================================================================================================================
     /**
@@ -321,6 +328,25 @@ public class WebService {
             }
         }
         return false;
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Méthode qui permet de trouver le token de l'utilisateur
+     * @return
+     */
+     //==============================================================================================================================================================================
+    public Token getToken(String tokenID)
+    {
+        Token tokenFind;
+        for (Token token:data.getLsttokens()) {
+            if(tokenID.equals(token.getId()))
+            {
+                tokenFind = token;
+                return  tokenFind;
+            }
+        }
+
+        throw  new IllegalArgumentException();
     }
 
 }
