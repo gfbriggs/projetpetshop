@@ -1,4 +1,5 @@
 package org.fieldenbriggs.petshop.activite;
+import android.app.Service;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -10,9 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.fieldenbriggs.petshop.R;
 import org.fieldenbriggs.petshop.service.AnimalerieService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -61,8 +67,22 @@ public class DrawerActivity extends AppCompatActivity {
                 }
                 else if (item.getItemId() == R.id.navigation_item_4)
                 {
-                    Intent intentLog = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intentLog);
+                    // On effectue la deconnection a partir du serveur.
+                    AnimalerieService.getInstance().getServer().deconnecterUtilisateur().enqueue(new Callback<Boolean>() {
+                        @Override
+                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                            Intent intentLog = new Intent(getApplicationContext(), LoginActivity.class);
+                            intentLog.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intentLog.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intentLog);
+                        }
+
+                        @Override
+                        public void onFailure(Call<Boolean> call, Throwable t) {
+                            Toast.makeText(DrawerActivity.this, "Quelque chose c'est mal passé au niveau du serveur!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
                 return false;
             }

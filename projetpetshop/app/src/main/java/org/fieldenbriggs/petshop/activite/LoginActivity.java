@@ -86,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                                     animalerie.setUtilisateurCourant(response.body());
                                     isLoading = false;
                                     Intent intentLoging = new Intent(getApplicationContext(), MainActivity.class);
+                                    intentLoging.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intentLoging.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intentLoging);
                                 }
                                 else

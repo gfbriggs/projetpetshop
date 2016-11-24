@@ -43,5 +43,8 @@ public interface IWebService {
     @GET("api/getevents/{id}")
     Call<List<GetEvenementResponse>> getEvenements (@Path("id")long id);
 
+    @GET("api/signout")
+    Call<Boolean> deconnecterUtilisateur();
+
 
 }

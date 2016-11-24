@@ -42,9 +42,21 @@ public class ActivitylistItems extends DrawerActivity {
         AnimalerieService.getInstance().getServer().getAnimaux(idUtilisateurCourant).enqueue(new Callback<List<AnimalListResponse>>() {
             @Override
             public void onResponse(Call<List<AnimalListResponse>> call, Response<List<AnimalListResponse>> response) {
-                animalerie.setLstAnimaux(response.body());
-                AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, animalerie.getLstAnimaux());
-                lstviewAnimaux.setAdapter(adapteur);
+
+                if(response.isSuccessful())
+                {
+                    animalerie.setLstAnimaux(response.body());
+                    AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, animalerie.getLstAnimaux());
+                    lstviewAnimaux.setAdapter(adapteur);
+                }
+                else
+                {
+                    Intent intentLog = new Intent(getApplicationContext(),LoginActivity.class);
+                    intentLog.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intentLog.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentLog);
+                }
+
             }
 
             @Override

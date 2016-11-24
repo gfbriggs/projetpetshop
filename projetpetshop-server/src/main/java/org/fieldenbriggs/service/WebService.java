@@ -1,12 +1,12 @@
 package org.fieldenbriggs.service;
 
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.org.apache.xpath.internal.operations.String;
+import com.google.gson.Gson;
 import org.apache.commons.validator.EmailValidator;
 import org.fieldenbriggs.exception.AnimalNonDisponibleException;
 import org.fieldenbriggs.exception.AuthentificationErrorException;
 import org.fieldenbriggs.exception.ErrorAjoutUtilisateurException;
+import org.fieldenbriggs.exception.NoTokenException;
 import org.fieldenbriggs.model.*;
 import org.fieldenbriggs.request.AddAnimalRequest;
 import org.fieldenbriggs.request.AddUtilisateurRequest;
@@ -15,6 +15,7 @@ import org.fieldenbriggs.response.AnimalDetailResponse;
 import org.fieldenbriggs.response.AnimalListResponse;
 import org.fieldenbriggs.response.GetEvenementResponse;
 import org.fieldenbriggs.response.UtilisateurLogResponse;
+
 
 
 import javax.ws.rs.*;
@@ -38,7 +39,8 @@ public class WebService {
     }
     private Data data;
 
-    public static final String COOKIE = "cookieWeb";
+    private static final String COOKIE = "cookieWeb";
+    private   static final String TOKEN_ERROR_MESSAGE = "Pas de token valide!";
      /*
      Méthodes de service
       */
@@ -62,26 +64,29 @@ public class WebService {
         // On fait le token
         // On fait la date d'expiration pour le token, 1 jour.
         Calendar cal = new GregorianCalendar();
-        cal.set(Calendar.DAY_OF_MONTH,Calendar.DAY_OF_MONTH + 1);
+        cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) + 1);
         System.out.println(cal.getTime().toString());
         Token token = new Token(UUID.randomUUID().toString(),cal.getTime(),utilisateurRechercher.getId());
         data.getLsttokens().add(token);
         // On fait le Cookie
-        NewCookie cookie = new NewCookie(COOKIE,token.getId(),"/","","Token ID",804800,true);
+        NewCookie cookie = new NewCookie(COOKIE,token.getId(),"/","","Token ID",80400,true);
         // Et on revoit le package au serveur
 
         UtilisateurLogResponse user = new UtilisateurLogResponse(utilisateurRechercher.getId(), utilisateurRechercher.getCourriel(), utilisateurRechercher.getNom());
-        return  Response.ok(user).cookie(cookie).build();
+        return  Response.ok(new Gson().toJson(user)).cookie(cookie).build();
 
     }
     @POST
     @Path("signout")
-    public Response deconnecterUtilisateur(@CookieParam(COOKIE)Cookie cookie)
-    {
-
-        // On fait un nouveau cookie qui expire et un token vide
+    public Response deconnecterUtilisateur(@CookieParam(COOKIE)Cookie cookie) throws NoTokenException, InterruptedException {
+        Thread.sleep(2000);
+        // On va chercher le token de l'utilisateur qui est log
+        Token token = getToken(cookie.getValue());
+        // On detruit le token courant
+        data.getLsttokens().remove(token);
+        // On fait un nouveau cookie qui expire et pas de token
         NewCookie newCookie = new NewCookie(COOKIE,null,"/","","Token ID",0,true);
-        return  Response.ok().cookie(newCookie).build();
+        return  Response.ok(true).cookie(newCookie).build();
     }
     //==============================================================================================================================================================================
     /**
@@ -124,12 +129,12 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @GET @Path("getanimals/{id}")
-     public List<AnimalListResponse> getAnimals(@PathParam("id") long id) throws InterruptedException {
+     public List<AnimalListResponse> getAnimals(@PathParam("id") long id, @CookieParam(COOKIE) Cookie cookie) throws InterruptedException, NoTokenException {
         Thread.sleep(2000);
-        System.out.println("Requete passée pour les animaux de l'utilisateur n." + id);
+        Utilisateur user = authenticate(cookie.getValue());
+        System.out.println("Requete passée pour les animaux de l'utilisateur n." + user.getId());
         // On revoie la liste qu'on a crée au préalable avec la méthode.
-
-        return createAnimalListFromID(id);
+        return createAnimalListFromID(user.getId());
     }
     //==============================================================================================================================================================================
     /**
@@ -191,10 +196,11 @@ public class WebService {
     //==============================================================================================================================================================================
     @POST
     @Path("addanimal")
-    public AnimalListResponse ajouterUnAnimal(AddAnimalRequest pAddAnimalRequest) throws Exception
+    public AnimalListResponse ajouterUnAnimal(@CookieParam(COOKIE) Cookie cookie, AddAnimalRequest pAddAnimalRequest) throws Exception
     {
         Thread.sleep(2000);
-
+        // On fait l'authentifiaction utilisteur
+        Utilisateur user = authenticate(cookie.getValue());
         Calendar cal = Calendar.getInstance();
 
         if(pAddAnimalRequest.getNom().isEmpty() || pAddAnimalRequest.getRace().isEmpty() || pAddAnimalRequest.getType().isEmpty() || pAddAnimalRequest.getDateDeNaissance().compareTo(cal.getTime()) > 0)
@@ -335,10 +341,11 @@ public class WebService {
      * @return
      */
      //==============================================================================================================================================================================
-    public Token getToken(String tokenID)
-    {
+    private Token getToken(String tokenID) throws NoTokenException {
+
+
         Token tokenFind;
-        for (Token token:data.getLsttokens()) {
+        for (Token token: Data.getInstance().getLsttokens()) {
             if(tokenID.equals(token.getId()))
             {
                 tokenFind = token;
@@ -346,7 +353,41 @@ public class WebService {
             }
         }
 
-        throw  new IllegalArgumentException();
+        throw  new NoTokenException(TOKEN_ERROR_MESSAGE);
+    }
+    //==============================================================================================================================================================================
+    /**
+     * Méthode qui permet de valider le token d'un utilisateur pour le log in
+     * @param tokenID
+     * @return
+     * @throws AuthentificationErrorException
+     */
+    //==============================================================================================================================================================================
+    private Utilisateur authenticate(String tokenID) throws NoTokenException
+    {
+
+        // On commence par trouver le token
+        Token token = getToken(tokenID);
+        //On regarde si la date d'expiration est bonne
+        Calendar cal = new GregorianCalendar();
+
+        if(token.getDateExp().before(cal.getTime()))
+        {
+            // Si elle n'est pas bonne on lance une exception et on supprime le token
+            Data.getInstance().getLsttokens().remove(token);
+            throw  new NoTokenException(TOKEN_ERROR_MESSAGE);
+        }
+
+        // Si tout passe on cherche le bon utilisateur
+        for (Utilisateur user:Data.getInstance().getLstUtilisateurs()
+             ) {
+            if(user.getId() == token.getUserID())
+            {
+                return user;
+            }
+        }
+
+        throw new NoTokenException(TOKEN_ERROR_MESSAGE);
     }
 
 }
