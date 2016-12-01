@@ -40,7 +40,7 @@ public class WebService {
     private Data data;
 
     private static final String COOKIE = "cookieWeb";
-    private   static final String TOKEN_ERROR_MESSAGE = "Pas de token valide!";
+    private static final String TOKEN_ERROR_MESSAGE = "Pas de token valide!";
      /*
      Méthodes de service
       */
@@ -144,9 +144,10 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @GET @Path("getevents/{id}")
-    public List<GetEvenementResponse> getEvents(@PathParam("id") long id) throws AnimalNonDisponibleException, InterruptedException {
+    public List<GetEvenementResponse> getEvents(@PathParam("id") long id, @CookieParam(COOKIE) Cookie cookie) throws AnimalNonDisponibleException, InterruptedException, NoTokenException {
         Thread.sleep(2000);
-
+        // On authentifie avec le cookie
+        Utilisateur user = authenticate(cookie.getValue());
         // Il faut instancier le data
         data = Data.getInstance();
         // On va verifier si l'animal exitste <-- oui oui
@@ -174,8 +175,10 @@ public class WebService {
      */
     //==============================================================================================================================================================================
     @GET @Path("getanimaldetail/{id}")
-     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id) throws AnimalNonDisponibleException, InterruptedException {
+     public AnimalDetailResponse getAnimalDetail(@PathParam("id") long id, @CookieParam(COOKIE) Cookie cookie) throws AnimalNonDisponibleException, InterruptedException, NoTokenException {
         Thread.sleep(2000);
+        // On authentifie avec le cookie
+        Utilisateur user = authenticate(cookie.getValue());
         // On s'assure que le data de base est crée et instancié
         data = Data.getInstance();
         // On va chercher un bon animal par son id
@@ -271,8 +274,8 @@ public class WebService {
     }
     //==============================================================================================================================================================================
     /**
-     *
-     * @param pCourriel
+     *Méthode qui vérifie si un utilisateur existe selon le courriel.
+     * @param pCourriel Le courriel entré
      * @throws ErrorAjoutUtilisateurException
      */
     //==============================================================================================================================================================================
