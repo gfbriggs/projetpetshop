@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class ActivitylistItems extends DrawerActivity {
     ListView lstviewAnimaux;
     String txtanimauxDeChaine;
     long idUtilisateurCourant;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,8 +36,10 @@ public class ActivitylistItems extends DrawerActivity {
         idUtilisateurCourant = animalerie.getUtilisateurCourant().getId();
         // Champs du layout
         lstviewAnimaux = (ListView) findViewById(R.id.lstAnimaux);
+        lstviewAnimaux.setVisibility(View.GONE);
         Button btnAjouter = (Button) findViewById(R.id.btnAddPet);
         txtAnimauxDe = (TextView) findViewById(R.id.txtAnimauxDe);
+        progressBar = (ProgressBar) findViewById(R.id.chargementanimaux);
         txtanimauxDeChaine = ("Animaux de " + animalerie.getUtilisateurCourant().getNom());
         txtAnimauxDe.setText(txtanimauxDeChaine);
         // Liste animaux version server
@@ -48,6 +52,8 @@ public class ActivitylistItems extends DrawerActivity {
                     animalerie.setLstAnimaux(response.body());
                     AnimalAdapter adapteur = new AnimalAdapter(ActivitylistItems.this, animalerie.getLstAnimaux());
                     lstviewAnimaux.setAdapter(adapteur);
+                    progressBar.setVisibility(View.GONE);
+                    lstviewAnimaux.setVisibility(View.VISIBLE);
                 }
                 else
                 {

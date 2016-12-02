@@ -1,6 +1,8 @@
 package org.fieldenbriggs.petshop.activite;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,8 @@ public class ItemDetailActivity extends DrawerActivity {
     TextView txtInputRace;
     TextView txtUtilisateur;
     ListView lstEvenements;
+    LinearLayout pgrLayout;
+    LinearLayout detailLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_item_detail);
@@ -39,6 +43,9 @@ public class ItemDetailActivity extends DrawerActivity {
          txtInputRace = (TextView) findViewById(R.id.inputRace);
          txtUtilisateur = (TextView) findViewById(R.id.inputUsername);
          lstEvenements = (ListView) findViewById(R.id.lstEvenements);
+         pgrLayout =(LinearLayout) findViewById(R.id.prgDetail);
+          detailLayout = (LinearLayout) findViewById(R.id.detailAnimauxView);
+
         
         // On va chercher l'animal courant avec l'item de list choisi.
 
@@ -54,6 +61,8 @@ public class ItemDetailActivity extends DrawerActivity {
                     txtInputType.setText(response.body().getType());
                     txtInputRace.setText(response.body().getRace());
                     txtUtilisateur.setText(animalerie.getUtilisateurCourant().getNom());
+                    detailLayout.setVisibility(View.VISIBLE);
+                    pgrLayout.setVisibility(View.GONE);
                 }
                 else
                 {

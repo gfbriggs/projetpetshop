@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_vertical_margin"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:id="@+id/chargementUser"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                 android:textAlignment="center"
                 android:text="Ajout en cours"
                 android:id="@+id/chargementTxt"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
 
         </LinearLayout>
         <LinearLayout

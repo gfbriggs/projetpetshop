@@ -37,6 +37,12 @@
         android:layout_height="0dp"
         android:layout_weight="4"
         >
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:visibility="visible"
+            android:id="@+id/chargementanimaux"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="326dp"

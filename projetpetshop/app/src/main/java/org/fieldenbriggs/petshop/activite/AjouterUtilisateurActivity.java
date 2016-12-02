@@ -43,23 +43,21 @@ public class AjouterUtilisateurActivity extends AppCompatActivity {
         btnAnnuler = (Button) findViewById(R.id.buttonAnnulerAjoutUtilisateur);
         progressBar = (ProgressBar) findViewById(R.id.chargementUser);
         txtLoading = (TextView) findViewById(R.id.chargementTxt);
+        progressBar.setVisibility(View.GONE);
+        txtLoading.setVisibility(View.GONE);
         onLoading = false;
         //Listeners
 
         btnAjouterUtilisateur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!onLoading)
-                {
-                    onLoading = true;
-                    // On rend la barre de progrès visible
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setVisibility(View.VISIBLE);
-                            txtLoading.setVisibility(View.VISIBLE);
-                        }
-                    });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.VISIBLE);
+                        txtLoading.setVisibility(View.VISIBLE);
+                    }
+                });
                 // On fait le package
                     try
                     {
@@ -67,8 +65,11 @@ public class AjouterUtilisateurActivity extends AppCompatActivity {
                 AnimalerieService.getInstance().getServer().adduser(addUser).enqueue(new Callback<UtilisateurLogResponse>() {
                     @Override
                     public void onResponse(Call<UtilisateurLogResponse> call, Response<UtilisateurLogResponse> response) {
+
                         if(response.isSuccessful())
                         {
+                            progressBar.setVisibility(View.GONE);
+                            txtLoading.setVisibility(View.GONE);
                             Toast.makeText(AjouterUtilisateurActivity.this, "Utilisateur ajouté!", Toast.LENGTH_SHORT).show();
                             AnimalerieService.getInstance().setUtilisateurCourant(response.body());
                             Intent intentLog = new Intent(getApplicationContext(), LoginActivity.class);
@@ -76,12 +77,15 @@ public class AjouterUtilisateurActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            progressBar.setVisibility(View.GONE);
+                            txtLoading.setVisibility(View.GONE);
                             Toast.makeText(AjouterUtilisateurActivity.this, "L'utilisateur ne peut être ajouté! : Vérifier si les champs sont bon!", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onFailure(Call<UtilisateurLogResponse> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
+                        txtLoading.setVisibility(View.GONE);
                         Toast.makeText(AjouterUtilisateurActivity.this, "Erreur de connection!", Toast.LENGTH_SHORT).show();
                     }
 
@@ -91,20 +95,9 @@ public class AjouterUtilisateurActivity extends AppCompatActivity {
                     {
                         e.printStackTrace();
                     }
-                    finally {
-                        // Après la requête le tout ne load plus donc on mets le loading a false.
-                        onLoading = false;
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressBar.setVisibility(View.GONE);
-                                txtLoading.setVisibility(View.GONE);
-                            }
-                        });
-                    }
                 }
             }
-        });
+        );
 
         btnAnnuler.setOnClickListener(new View.OnClickListener() {
             @Override
