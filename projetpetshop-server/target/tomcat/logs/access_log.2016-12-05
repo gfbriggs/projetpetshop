@@ -1,0 +1,5 @@
+127.0.0.1 - - [05/Dec/2016:19:47:12 -0500] "POST /api/signin/ HTTP/1.1" 400 30 http-bio-8443-exec-1 2767
+127.0.0.1 - - [05/Dec/2016:19:47:52 -0500] "POST /api/signin/ HTTP/1.1" 200 50 http-bio-8443-exec-2 2008
+127.0.0.1 - - [05/Dec/2016:19:47:58 -0500] "GET /api/getanimals/1 HTTP/1.1" 200 78 http-bio-8443-exec-3 2008
+127.0.0.1 - - [05/Dec/2016:19:48:11 -0500] "GET /api/getanimaldetail/2 HTTP/1.1" 200 91 http-bio-8443-exec-4 2004
+127.0.0.1 - - [05/Dec/2016:19:48:11 -0500] "GET /api/getevents/2 HTTP/1.1" 200 77 http-bio-8443-exec-5 2003
