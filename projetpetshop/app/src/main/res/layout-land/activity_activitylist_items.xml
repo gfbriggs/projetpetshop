@@ -74,7 +74,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:id="@+id/viewDetails">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,7 +86,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/inputNomAnimal"
+                    android:id="@+id/inputNomAnimald"
                     android:textAlignment="center"
                     android:text="Nom input"
                     />
@@ -99,9 +101,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/inputAgeAnimal"
+                    android:id="@+id/inputAgeAnimald"
                     android:textAlignment="center"
-                    android:text="Date input" />
+                    android:text="Date input"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:id="@+id/inputTypeAnimal"
+                    android:id="@+id/inputTypeAnimald"
                     android:text="Type input"
                     />
             </LinearLayout>
@@ -124,7 +126,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/inputRace"
+                    android:id="@+id/inputRaced"
                     android:textAlignment="center"
                     android:text="Type race"
                     />
@@ -138,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:id="@+id/inputUsername"
+                    android:id="@+id/inputUsernamed"
                     android:text="Nom proprietaire"
                     />
             </LinearLayout>
@@ -163,7 +165,7 @@
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/lstEvenements">
+                    android:id="@+id/lstEvenementsd">
 
                 </ListView>
 
