@@ -25,7 +25,8 @@
         <activity android:name=".activite.ActivitylistItems" />
         <activity android:name=".activite.ItemDetailActivity" />
         <activity android:name=".activite.AjouterAnimalActivity" />
-        <activity android:name=".activite.AjouterUtilisateurActivity"></activity>
+        <activity android:name=".activite.AjouterUtilisateurActivity" />
+        <activity android:name=".activite.LoginActivity2"></activity>
     </application>
 
 </manifest>

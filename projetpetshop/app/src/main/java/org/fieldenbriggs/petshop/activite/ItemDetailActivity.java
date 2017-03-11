@@ -19,12 +19,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ItemDetailActivity extends DrawerActivity {
     AnimalerieService animalerie;
+    @BindView(R.id.inputNomAnimal)
     TextView txtinputAnimal;
     TextView txtInputAge;
     TextView txtInputType;
@@ -38,9 +40,9 @@ public class ItemDetailActivity extends DrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_item_detail);
         super.onCreate(savedInstanceState);
+       
         animalerie = AnimalerieService.getInstance();
         // Champs du layout
-         txtinputAnimal = (TextView)findViewById(R.id.inputNomAnimal);
          txtInputAge = (TextView)findViewById(R.id.inputAgeAnimal);
          txtInputType = (TextView)findViewById(R.id.inputTypeAnimal);
          txtInputRace = (TextView) findViewById(R.id.inputRace);
